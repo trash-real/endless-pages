@@ -14,10 +14,33 @@ config/name="endlesspages"
 config/features=PackedStringArray("4.7", "Forward Plus")
 config/icon="res://icon.svg"
 
+[autoload]
+
+PhantomCameraManager="*uid://duq6jhf6unyis"
+Signals="*uid://covnnergd04u8"
+
 [display]
 
 window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/AsepriteWizard/plugin.cfg", "res://addons/phantom_camera/plugin.cfg")
+
+[file_customization]
+
+folder_colors={
+"res://_core/": "orange",
+"res://addons/": "red",
+"res://assets/": "green",
+"res://nodes/": "blue",
+"res://resources/": "pink"
+}
+
+[gui]
+
+theme/custom_font="uid://cfujon5n72438"
 
 [physics]
 

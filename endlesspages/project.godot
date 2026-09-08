@@ -11,6 +11,7 @@ config_version=5
 [application]
 
 config/name="endlesspages"
+run/main_scene="uid://b3cs3rvxe7hjk"
 config/features=PackedStringArray("4.7", "Forward Plus")
 config/icon="res://icon.svg"
 
@@ -41,6 +42,13 @@ folder_colors={
 [gui]
 
 theme/custom_font="uid://cfujon5n72438"
+
+[layer_names]
+
+3d_physics/layer_1="Default"
+3d_physics/layer_2="Player"
+3d_physics/layer_3="Page"
+3d_physics/layer_4="Enemy"
 
 [physics]
 

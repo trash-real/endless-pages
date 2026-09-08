@@ -6,19 +6,19 @@
 
 [node name="Main" type="Node" unique_id=1822949558]
 
-[node name="GameMap" type="Node" parent="." unique_id=1453394560]
+[node name="Game" type="Node3D" parent="." unique_id=48079991]
 process_mode = 1
 
-[node name="MapTest1" parent="GameMap" unique_id=1918921851 instance=ExtResource("1_cv2pg")]
+[node name="MapTest1" parent="Game" unique_id=1918921851 instance=ExtResource("1_cv2pg")]
 
-[node name="Player" parent="GameMap/MapTest1" unique_id=777005718 instance=ExtResource("2_a8nhc")]
+[node name="Player" parent="Game/MapTest1" unique_id=777005718 instance=ExtResource("2_a8nhc")]
 
-[node name="Camera3D" type="Camera3D" parent="." unique_id=1598649772]
+[node name="Camera3D" type="Camera3D" parent="Game" unique_id=1598649772]
 physics_interpolation_mode = 1
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
 top_level = true
 
-[node name="PhantomCameraHost" type="Node" parent="Camera3D" unique_id=924364487]
+[node name="PhantomCameraHost" type="Node" parent="Game/Camera3D" unique_id=924364487]
 process_priority = 300
 process_physics_priority = 300
 script = ExtResource("3_a8nhc")

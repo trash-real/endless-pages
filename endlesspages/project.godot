@@ -19,6 +19,11 @@ config/icon="res://icon.svg"
 
 PhantomCameraManager="*uid://duq6jhf6unyis"
 Signals="*uid://covnnergd04u8"
+Constraints="*uid://05n1iww8o81n"
+
+[debug]
+
+gdscript/warnings/unused_signal=0
 
 [display]
 
@@ -56,4 +61,5 @@ theme/custom_font="uid://cfujon5n72438"
 
 [rendering]
 
+textures/canvas_textures/default_texture_filter=0
 rendering_device/driver.windows="d3d12"

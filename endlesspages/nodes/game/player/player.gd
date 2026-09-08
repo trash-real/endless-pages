@@ -1,35 +1,35 @@
 class_name Player
 extends CharacterBody3D
-## Player base script.
+## The player. All behavior comes from [PlayerComponent]s.
 ##
-## Handles Player state machine.
+## This node handles:[br]
+## - State machine management.[br]
+## - Forwarding ticks to the [ComponentHost].[br]
+## - Applying movement.
 
-signal state_changed(new: State)
+enum MovementState { STILL, WALKING, RUNNING }
 
-enum State {
-	INIT,   # Game starting, init components
-	ACTIVE, # Normal active state
-	PAUSED, # Not active, but needs to be reactivated
-	DEAD,   # Not going to be reactivated
-}
+var movement_state: StateMachine = StateMachine.new(MovementState.STILL)
 
-var _current_state: State = State.INIT:
-	set(value):
-		_current_state = value
-		state_changed.emit(value)
+@onready var components: ComponentHost = ComponentHost.new(self)
 
 
-# TEMP
 func _ready() -> void:
-	request_state_change(State.ACTIVE)
-
-
-func request_state_change(new: State):
-	# if allowed logic
+	components.setup()
 	
-	# Change State
-	_current_state = new
+	# State machine connections
+	movement_state.changed.connect(func(_a, _b): components.refresh_all())
+	Constraints.changed.connect(components.refresh_all)
+	
+	components.start()
 
 
-func get_current_state() -> State:
-	return _current_state
+func _process(delta: float) -> void:
+	components.tick(delta)
+
+
+func _physics_process(delta: float) -> void:
+	components.physics_tick(delta)
+	
+	if components.running:
+		move_and_slide()

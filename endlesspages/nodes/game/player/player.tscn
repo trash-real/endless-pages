@@ -1,10 +1,16 @@
 [gd_scene format=3 uid="uid://ub6136cfun7q"]
 
-[ext_resource type="Script" uid="uid://b4m880f1q2rmq" path="res://nodes/game/player/player.gd" id="1_12ow2"]
+[ext_resource type="Script" uid="uid://bofihe1krjy8i" path="res://nodes/game/player/player.gd" id="1_86jdl"]
 [ext_resource type="Script" uid="uid://csjccrhj5wnx7" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_3d.gd" id="1_xy23d"]
 [ext_resource type="Script" uid="uid://8umksf8e80fw" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="2_12ow2"]
+[ext_resource type="Texture2D" uid="uid://oma3aqhh4qor" path="res://assets/art/icons/enemy/chaser_icon.aseprite" id="2_bxokf"]
+[ext_resource type="Script" uid="uid://dfn22qoql1065" path="res://nodes/game/components/gravity_component.gd" id="4_86jdl"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_g4v7s"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fhuq2"]
+albedo_texture = ExtResource("2_bxokf")
+texture_filter = 0
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_57qmd"]
 
@@ -12,14 +18,15 @@
 script = ExtResource("2_12ow2")
 
 [node name="Player" type="CharacterBody3D" unique_id=777005718]
-script = ExtResource("1_12ow2")
+script = ExtResource("1_86jdl")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1413062164]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("CapsuleShape3D_g4v7s")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=266520823]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 1, 0)
+material_override = SubResource("StandardMaterial3D_fhuq2")
 mesh = SubResource("CapsuleMesh_57qmd")
 
 [node name="PlayerCamera" type="Node3D" parent="." unique_id=2087166911]
@@ -27,3 +34,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
 script = ExtResource("1_xy23d")
 tween_resource = SubResource("Resource_86jdl")
 metadata/_custom_type_script = "uid://csjccrhj5wnx7"
+
+[node name="GravityComponent" type="Node" parent="." unique_id=1185840935]
+script = ExtResource("4_86jdl")
+metadata/_custom_type_script = "uid://dfn22qoql1065"

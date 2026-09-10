@@ -7,9 +7,9 @@ extends CharacterBody3D
 ## - Forwarding ticks to the [ComponentHost].[br]
 ## - Applying movement.
 
-enum MovementState { STILL, WALKING, RUNNING }
+@export var stats: PlayerStats
 
-var movement_state: StateMachine = StateMachine.new(MovementState.STILL)
+var movement_state: StateMachine = StateMachine.new(PlayerMovementComponent.MovementState.STILL)
 
 @onready var components: ComponentHost = ComponentHost.new(self)
 
@@ -17,9 +17,8 @@ var movement_state: StateMachine = StateMachine.new(MovementState.STILL)
 func _ready() -> void:
 	components.setup()
 	
-	# State machine connections
-	movement_state.changed.connect(func(_a, _b): components.refresh_all())
 	Constraints.changed.connect(components.refresh_all)
+	movement_state.changed.connect(func(_a, _b): components.refresh_all())
 	
 	components.start()
 

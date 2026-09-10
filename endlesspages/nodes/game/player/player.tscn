@@ -4,7 +4,10 @@
 [ext_resource type="Script" uid="uid://csjccrhj5wnx7" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_3d.gd" id="1_xy23d"]
 [ext_resource type="Script" uid="uid://8umksf8e80fw" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="2_12ow2"]
 [ext_resource type="Texture2D" uid="uid://oma3aqhh4qor" path="res://assets/art/icons/enemy/chaser_icon.aseprite" id="2_bxokf"]
+[ext_resource type="Resource" uid="uid://b04tg5vcvrh24" path="res://resources/player_stats/player_stats_default.tres" id="2_fv834"]
 [ext_resource type="Script" uid="uid://dfn22qoql1065" path="res://nodes/game/components/gravity_component.gd" id="4_86jdl"]
+[ext_resource type="Script" uid="uid://bmq1lwfn58w1p" path="res://nodes/game/player/player_components/player_movement_component.gd" id="6_3fw2k"]
+[ext_resource type="Script" uid="uid://cf5crmfj6c4d3" path="res://nodes/game/player/player_input.gd" id="7_fv834"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_g4v7s"]
 
@@ -19,6 +22,7 @@ script = ExtResource("2_12ow2")
 
 [node name="Player" type="CharacterBody3D" unique_id=777005718]
 script = ExtResource("1_86jdl")
+stats = ExtResource("2_fv834")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1413062164]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
@@ -30,11 +34,20 @@ material_override = SubResource("StandardMaterial3D_fhuq2")
 mesh = SubResource("CapsuleMesh_57qmd")
 
 [node name="PlayerCamera" type="Node3D" parent="." unique_id=2087166911]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 8)
 script = ExtResource("1_xy23d")
 tween_resource = SubResource("Resource_86jdl")
 metadata/_custom_type_script = "uid://csjccrhj5wnx7"
 
 [node name="GravityComponent" type="Node" parent="." unique_id=1185840935]
 script = ExtResource("4_86jdl")
+tick_prio = 1
 metadata/_custom_type_script = "uid://dfn22qoql1065"
+
+[node name="PlayerInputComponent" type="Node" parent="." unique_id=1809829465]
+script = ExtResource("7_fv834")
+metadata/_custom_type_script = "uid://cf5crmfj6c4d3"
+
+[node name="PlayerMovementComponent" type="Node" parent="." unique_id=719884206]
+script = ExtResource("6_3fw2k")
+metadata/_custom_type_script = "uid://bmq1lwfn58w1p"

@@ -12,6 +12,7 @@ var host: ComponentHost
 var enabled: bool = false
 
 
+## DO NOT OVERRIDE!
 func setup(c_host: ComponentHost) -> void:
 	host = c_host
 	

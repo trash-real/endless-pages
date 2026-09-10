@@ -1,6 +1,6 @@
 extends Node
 ## Set of constraints applied to the player by enemies, cutscenes, items, etc.[br][br]
-## Autoloaded as [code]Constraints[/code] because [code]ConstraintSet[/code] is a lame name. >:(
+## Autoloaded as [code]Constraints[/code].
 ##
 ## Counted by holder. A holder is typically the node that gives the constraint.
 

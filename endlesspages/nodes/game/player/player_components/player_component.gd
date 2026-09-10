@@ -6,7 +6,7 @@ extends Component
 ## Handles restricting state activity by checking Player specific states/constraints.
 
 ## Which movement states this component runs during. Empty means any.
-@export var active_move_states: Array[Player.MovementState] = []
+@export var active_move_states: Array[PlayerMovementComponent.MovementState] = []
  
 ## Constraints that switch this component off while held. Empty means never.
 @export var blocked_by: Array[Constraint.Type] = []

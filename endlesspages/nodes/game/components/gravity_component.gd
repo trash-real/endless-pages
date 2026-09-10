@@ -17,4 +17,5 @@ func init() -> void:
 
 
 func physics_tick(_delta: float) -> void:
-	target.velocity += target.get_gravity()
+	if not target.is_on_floor():
+		target.velocity += target.get_gravity() * _delta

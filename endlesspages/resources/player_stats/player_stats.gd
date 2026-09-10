@@ -4,6 +4,7 @@ extends Resource
 @export_group("Movement")
 @export var walk_speed: float = 3.5
 @export var run_speed: float = 5.0
+@export var acceleration: float = 10.0
 
 @export_group("Flashlight")
 @export var range: float = 10.0

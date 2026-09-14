@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="ColorSet" format=3 uid="uid://cv6x21y41jgkb"]
+
+[ext_resource type="Script" uid="uid://cqxyxqcf72n8o" path="res://resources/color_sets/color_set.gd" id="1_0qnaf"]
+
+[resource]
+resource_name = "yellow"
+script = ExtResource("1_0qnaf")
+name = "Yellow"
+colors = Array[Color]([Color(0.9999997, 0.9317866, 0.6674163, 1), Color(0.93305826, 0.7681374, 0.2727638, 1), Color(0.52077967, 0.39809185, 0.07927028, 1), Color(0.31530073, 0.21442616, 0.025854757, 1)])

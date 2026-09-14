@@ -3,31 +3,58 @@ extends PlayerComponent
 
 enum MovementState { STILL, WALKING, RUNNING }
 
-var _input: PlayerInputComponent
+var _input: InputComponent
+var _camera: PlayerCameraComponent
 
 
 func init() -> void:
 	super.init()
-	_input = _player.components.get_component(PlayerInputComponent)
+	_input = _player.components.get_component(InputComponent)
+	_camera = _player.components.get_component(PlayerCameraComponent)
+	
+	_input.run_pressed.connect(_on_input_run_pressed)
+	_input.run_released.connect(_on_input_run_released)
 
 
 func physics_tick(_delta: float) -> void:
 	var previous_vel := _player.velocity
-	var direction = _input.get_movement_direction().normalized()
+	var input := _input.get_movement_direction()
 	
-	_player.velocity.x = direction.x * _player.stats.walk_speed
-	_player.velocity.z = direction.y * _player.stats.walk_speed
+	# Get camera facing directions
+	var forward := _camera.get_forward_vector().normalized()
+	var right := _camera.get_right_vector().normalized()
+	
+	# No vertical movement
+	forward.y = 0.0
+	right.y = 0.0
+	
+	# Combine movement input with camera directions
+	var direction := (right * input.x + forward * input.z).normalized()
+	
+	# Apply
+	_player.velocity.x = direction.x * _get_speed()
+	_player.velocity.z = direction.z * _get_speed()
 	
 	if previous_vel == Vector3.ZERO and _player.velocity != Vector3.ZERO:
 		_on_begin_moving()
+	if previous_vel != Vector3.ZERO and _player.velocity == Vector3.ZERO:
+		_change_state(MovementState.STILL)
+
+
+func _get_speed() -> float:
+	match _player.movement_state.get_state():
+		MovementState.STILL:
+			return 0.0
+		MovementState.WALKING:
+			return _player.stats.walk_speed
+		MovementState.RUNNING:
+			return _player.stats.run_speed
+		_:
+			return 0.0
 
 
 func _change_state(new: MovementState):
 	_player.movement_state.request(new)
-
-
-func deactivate() -> void:
-	pass
 
 
 func _on_begin_moving() -> void:
@@ -35,3 +62,15 @@ func _on_begin_moving() -> void:
 		_change_state(MovementState.RUNNING)
 	else:
 		_change_state(MovementState.WALKING)
+
+
+#region Signal Connections
+func _on_input_run_pressed() -> void:
+	if _player.velocity != Vector3.ZERO:
+		_change_state(MovementState.RUNNING)
+
+
+func _on_input_run_released() -> void:
+	if _player.velocity != Vector3.ZERO:
+		_change_state(MovementState.WALKING)
+#endregion

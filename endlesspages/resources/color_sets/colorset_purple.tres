@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="ColorSet" format=3 uid="uid://clb54htu6fqy4"]
+
+[ext_resource type="Script" uid="uid://cqxyxqcf72n8o" path="res://resources/color_sets/color_set.gd" id="1_kej2e"]
+
+[resource]
+resource_name = "purple"
+script = ExtResource("1_kej2e")
+name = "Purple"
+colors = Array[Color]([Color(0.8719084, 0.79567474, 0.9768229, 1), Color(0.6, 0.5176471, 0.83137256, 1), Color(0.34901962, 0.18039216, 0.5137255, 1), Color(0.13725491, 0.047058824, 0.2, 1)])
+metadata/_custom_type_script = "uid://cr2cb0aew1jk5"

@@ -8,14 +8,16 @@ extends Node
 ## Lower value = tick sooner.
 @export var tick_priority: int = 0
 
-var host: ComponentHost
 var enabled: bool = false
+
+var _host: ComponentHost
+var _signals: Array[Array] = []
 
 
 ## [color=red][b]DO NOT OVERRIDE![/b][/color][br][br]
 ## Handles caching [ComponentHost] and setting process mode to false (handled by host).
 func setup(c_host: ComponentHost) -> void:
-	host = c_host
+	_host = c_host
 	
 	# Host decides tick order instead
 	set_process(false)
@@ -30,11 +32,30 @@ func refresh() -> void:
 	if should_be != enabled:
 		enabled = should_be
 		if enabled:
+			_connect_signals()
 			activate()
 		else:
 			deactivate()
+			_disconnect_signals()
 	 
 	state_changed()
+
+
+## Automatic signal connection/disconnection on activate/deactivate.
+func new_signal(sig: Signal, handler: Callable) -> void:
+	_signals.append([sig, handler])
+
+
+func _connect_signals() -> void:
+	for s in _signals:
+		if not s[0].is_connected(s[1]):
+			s[0].connect(s[1])
+
+
+func _disconnect_signals() -> void:
+	for s in _signals:
+		if s[0].is_connected(s[1]):
+			s[0].disconnect(s[1])
 
 
 ## Override in subclasses that have their own state machine logic to decide this.[br][br]
@@ -42,7 +63,7 @@ func refresh() -> void:
 ## [codeblock]
 ## return super() and state_machine.is_active()
 func _is_active() -> bool:
-	return host.running
+	return _host.running
 
 
 ## Override in subclasses.[br]

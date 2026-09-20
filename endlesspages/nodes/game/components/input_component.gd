@@ -13,6 +13,9 @@ signal mouse_motion(relative: Vector2)
 
 #region Input
 func _unhandled_input(event: InputEvent) -> void:
+	if not enabled:
+		return
+	
 	if event is InputEventKey:
 		_handle_key_input(event)
 	elif event is InputEventMouseButton:

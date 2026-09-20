@@ -12,12 +12,11 @@ func init() -> void:
 	_input = _player.components.get_component(InputComponent)
 	_camera = _player.components.get_component(PlayerCameraComponent)
 	
-	_input.run_pressed.connect(_on_input_run_pressed)
-	_input.run_released.connect(_on_input_run_released)
+	new_signal(_input.run_pressed, _on_input_run_pressed)
+	new_signal(_input.run_released, _on_input_run_released)
 
 
 func physics_tick(delta: float) -> void:
-	var previous_vel := _player.velocity
 	var input := _input.get_movement_direction()
 	
 	# Get camera facing directions
@@ -35,10 +34,15 @@ func physics_tick(delta: float) -> void:
 	_player.velocity.x = lerpf(_player.velocity.x, direction.x * _get_speed(), _player.stats.acceleration * delta)
 	_player.velocity.z = lerpf(_player.velocity.z, direction.z * _get_speed(), _player.stats.acceleration * delta)
 	
-	if previous_vel == Vector3.ZERO and direction != Vector3.ZERO:
+	var moving := direction != Vector3.ZERO
+	if moving and _player.movement_state.get_state() == MovementState.STILL:
 		_on_begin_moving()
-	if direction == Vector3.ZERO:
+	elif not moving:
 		_change_state(MovementState.STILL)
+
+
+func deactivate() -> void:
+	_player.movement_state.request(MovementState.STILL)
 
 
 func _get_speed() -> float:

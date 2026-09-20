@@ -5,17 +5,18 @@ extends Component
 ## Attach to anything with a state machine to tie it to that Node's active states.[br]
 ## Can be used on [Player], Enemy3D, etc.
 
-var target: CharacterBody3D
+var _target: CharacterBody3D
 
 
 func init() -> void:
-	if host.node is not CharacterBody3D:
+	if _host.node is not CharacterBody3D:
 		push_error("GravityComponent must be assigned to CharacterBody3D!")
 		queue_free()
+		return
 	
-	target = host.node
+	_target = _host.node
 
 
-func physics_tick(_delta: float) -> void:
-	if not target.is_on_floor():
-		target.velocity += target.get_gravity() * _delta
+func physics_tick(delta: float) -> void:
+	if not _target.is_on_floor():
+		_target.velocity += _target.get_gravity() * delta

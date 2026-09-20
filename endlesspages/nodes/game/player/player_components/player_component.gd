@@ -12,7 +12,7 @@ var _player: Player
  
  
 func init() -> void:
-	_player = host.node as Player
+	_player = _host.node as Player
 	assert(_player != null, "PlayerComponent requires a Player host.")
  
  

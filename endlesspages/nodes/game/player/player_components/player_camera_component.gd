@@ -23,7 +23,7 @@ func init() -> void:
 	super()
 	_input = _player.components.get_component(InputComponent)
 	
-	_input.mouse_motion.connect(_on_input_mouse_motion)
+	new_signal(_input.mouse_motion, _on_input_mouse_motion)
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
 

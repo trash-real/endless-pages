@@ -13,7 +13,7 @@ var _input: InputComponent
 
 
 func init() -> void:
-	super.init()
+	super()
 	_input = _player.components.get_component(InputComponent)
 	
 	_input.mouse_motion.connect(_on_input_mouse_motion)

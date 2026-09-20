@@ -22,7 +22,6 @@ process_mode = 1
 [node name="Player" parent="Game/MapTest1" unique_id=777005718 instance=ExtResource("2_a8nhc")]
 
 [node name="Camera3D" type="Camera3D" parent="Game" unique_id=1598649772]
-physics_interpolation_mode = 1
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
 top_level = true
 fov = 90.0
@@ -31,6 +30,7 @@ fov = 90.0
 process_priority = 300
 process_physics_priority = 300
 script = ExtResource("3_a8nhc")
+interpolation_mode = 1
 metadata/_custom_type_script = "uid://bd046eokvcnu2"
 
 [node name="ScreenColorCanvas" type="CanvasLayer" parent="." unique_id=1487558653]

@@ -83,13 +83,16 @@ script = ExtResource("6_3fw2k")
 blocked_by = Array[int]([1])
 metadata/_custom_type_script = "uid://bmq1lwfn58w1p"
 
-[node name="Flashlight" type="Node3D" parent="." unique_id=371934921]
+[node name="FlashlightBase" type="Node3D" parent="." unique_id=371934921]
+editor_description = "Gets rotated by PlayerFlashlightComponent."
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
 
-[node name="SpotLight3D" type="SpotLight3D" parent="Flashlight" unique_id=1364317176]
+[node name="SpotLight3D" type="SpotLight3D" parent="FlashlightBase" unique_id=1364317176]
 light_energy = 10.0
 spot_range = 50.0
 
-[node name="PlayerComponentFlashlight" type="Node" parent="Flashlight" unique_id=1848160442]
+[node name="PlayerFlashlightComponent" type="Node" parent="FlashlightBase" unique_id=1150490959 node_paths=PackedStringArray("_flashlight_base", "_camera")]
 script = ExtResource("11_bgc8q")
+_flashlight_base = NodePath("..")
+_camera = NodePath("../../CameraBase/CameraYaw/CameraPitch/PlayerCamera")
 metadata/_custom_type_script = "uid://dfmkrc7st8wck"

@@ -43,14 +43,12 @@ func physics_tick(_delta: float) -> void:
 
 func _get_speed() -> float:
 	match _player.movement_state.get_state():
-		MovementState.STILL:
-			return 0.0
 		MovementState.WALKING:
 			return _player.stats.walk_speed
 		MovementState.RUNNING:
 			return _player.stats.run_speed
 		_:
-			return 0.0
+			return _player.stats.walk_speed
 
 
 func _change_state(new: MovementState):

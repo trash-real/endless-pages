@@ -6,13 +6,14 @@ extends Node
 ## The host enables/disables components automatically.
 
 ## Lower value = tick sooner.
-@export var tick_prio: int = 0
+@export var tick_priority: int = 0
 
 var host: ComponentHost
 var enabled: bool = false
 
 
-## [color=red][b]DO NOT OVERRIDE! YOU WILL TASTE MY WRATH!
+## [color=red][b]DO NOT OVERRIDE![/b][/color][br][br]
+## Handles caching [ComponentHost] and setting process mode to false (handled by host).
 func setup(c_host: ComponentHost) -> void:
 	host = c_host
 	

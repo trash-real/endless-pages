@@ -41,7 +41,7 @@ func setup() -> void:
 	# Order by tick priority
 	_components.sort_custom(
 		func(a: Component, b: Component) -> bool:
-			return a.tick_prio < b.tick_prio
+			return a.tick_priority < b.tick_priority
 	)
 	
 	for c in _components:
@@ -85,7 +85,7 @@ func refresh_all() -> void:
 
 
 ## [b]Easy lookup for sibling components.[/b][br][br]
-## Do not use per frame. Use to get references in Component.init().
+## Do not use per frame. Use to cache references in [method Component.init].
 ## [codeblock]
 ## get_component(PlayerMovementComponent)
 ## [/codeblock]

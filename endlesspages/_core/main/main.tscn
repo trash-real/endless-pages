@@ -7,10 +7,10 @@
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_61opr"]
 shader = ExtResource("4_weaco")
-shader_parameter/shade_0 = Color(0.8, 0.8, 0.8, 1)
-shader_parameter/shade_1 = Color(0.6, 0.6, 0.6, 1)
-shader_parameter/shade_2 = Color(0.4, 0.4, 0.4, 1)
-shader_parameter/shade_3 = Color(0.2, 0.2, 0.2, 1)
+shader_parameter/shade_0 = Color(0.6627451, 0.8392157, 0.8980392, 1)
+shader_parameter/shade_1 = Color(0.27450982, 0.56078434, 0.6862745, 1)
+shader_parameter/shade_2 = Color(0.003921569, 0.22745098, 0.3882353, 1)
+shader_parameter/shade_3 = Color(0.003921569, 0.11372549, 0.20784314, 1)
 
 [node name="Main" type="Node" unique_id=1822949558]
 
@@ -25,6 +25,7 @@ process_mode = 1
 physics_interpolation_mode = 1
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
 top_level = true
+fov = 90.0
 
 [node name="PhantomCameraHost" type="Node" parent="Game/Camera3D" unique_id=924364487]
 process_priority = 300

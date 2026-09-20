@@ -26,7 +26,13 @@ duration = 0.5
 transition = 3
 ease = 1
 
-[sub_resource type="Resource" id="Resource_hgh7n"]
+[sub_resource type="Resource" id="Resource_ts7x6"]
+script = ExtResource("11_yrsia")
+time = 0.33
+trans = 10
+metadata/_custom_type_script = "uid://dqiid0ps7nvv6"
+
+[sub_resource type="Resource" id="Resource_56pq6"]
 script = ExtResource("11_yrsia")
 ease = 2
 trans = 10
@@ -98,7 +104,8 @@ spot_range = 50.0
 [node name="PlayerFlashlightComponent" type="Node" parent="FlashlightBase" unique_id=1150490959 node_paths=PackedStringArray("_flashlight_base", "_run_offset_node", "_camera")]
 script = ExtResource("11_bgc8q")
 _camera_follow_lerp_speed = 50.0
-_run_settings = SubResource("Resource_hgh7n")
+_start_run_settings = SubResource("Resource_ts7x6")
+_stop_run_settings = SubResource("Resource_56pq6")
 _flashlight_base = NodePath("..")
 _run_offset_node = NodePath("../RunOffset")
 _camera = NodePath("../../CameraBase/CameraYaw/CameraPitch/PlayerCamera")

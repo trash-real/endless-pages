@@ -12,8 +12,8 @@ func init() -> void:
 	_input = _player.components.get_component(InputComponent)
 	_camera = _player.components.get_component(PlayerCameraComponent)
 	
-	new_signal(_input.run_pressed, _on_input_run_pressed)
-	new_signal(_input.run_released, _on_input_run_released)
+	create_bind(_input.run_pressed, _on_input_run_pressed)
+	create_bind(_input.run_released, _on_input_run_released)
 
 
 func physics_tick(delta: float) -> void:

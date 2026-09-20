@@ -12,6 +12,7 @@ extends PlayerComponent
 
 @export_group("References")
 @export var _flashlight_base: Node3D
+@export var _offset_node: Node3D
 @export var _camera: PhantomCamera3D
 
 var _input: InputComponent
@@ -32,11 +33,11 @@ func init() -> void:
 	
 	_input = _host.get_component(InputComponent)
 	
-	new_signal(_input.mouse_motion, _on_input_mouse_motion)
+	create_bind(_input.mouse_motion, _on_input_mouse_motion)
 
 
 func tick(delta: float) -> void:
-	_target_rotation = _get_rotation_target()
+	_target_rotation = _get_offset_rotation_target()
 	_flashlight_base.global_rotation.x = lerp_angle(_flashlight_base.global_rotation.x, _target_rotation.x, _get_lerp_delta(_lerp_speed.x, delta))
 	_flashlight_base.global_rotation.y = lerp_angle(_flashlight_base.global_rotation.y, _target_rotation.y, _get_lerp_delta(_lerp_speed.y, delta))
 	
@@ -58,7 +59,7 @@ func _follow_camera() -> void:
 	_flashlight_base.global_rotation += Vector3(deg_to_rad(-_mouse_movement_offset.y), deg_to_rad(-_mouse_movement_offset.x), 0.0)
 
 
-func _get_rotation_target() -> Vector3:
+func _get_offset_rotation_target() -> Vector3:
 	if _player.movement_state.get_state() == PlayerMovementComponent.MovementState.RUNNING:
 		return Vector3(deg_to_rad(RUN_OFFSET_X), _camera.global_rotation.y, 0.0)
 	return _camera.global_rotation

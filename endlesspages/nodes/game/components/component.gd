@@ -11,7 +11,7 @@ extends Node
 var enabled: bool = false
 
 var _host: ComponentHost
-var _signals: Array[Array] = []
+var _binds: Array[Binding] = []
 
 
 ## [color=red][b]DO NOT OVERRIDE![/b][/color][br][br]
@@ -41,21 +41,29 @@ func refresh() -> void:
 	state_changed()
 
 
+class Binding:
+	var sig: Signal
+	var handler: Callable
+	func _init(s: Signal, h: Callable) -> void:
+		sig = s
+		handler = h
+
+
 ## Automatic signal connection/disconnection on activate/deactivate.
-func new_signal(sig: Signal, handler: Callable) -> void:
-	_signals.append([sig, handler])
+func create_bind(sig: Signal, handler: Callable) -> void:
+	_binds.push_back(Binding.new(sig, handler))
 
 
 func _connect_signals() -> void:
-	for s in _signals:
-		if not s[0].is_connected(s[1]):
-			s[0].connect(s[1])
+	for bind in _binds:
+		if not bind.sig.is_connected(bind.handler):
+			bind.sig.connect(bind.handler)
 
 
 func _disconnect_signals() -> void:
-	for s in _signals:
-		if s[0].is_connected(s[1]):
-			s[0].disconnect(s[1])
+	for bind in _binds:
+		if bind.sig.is_connected(bind.handler):
+			bind.sig.disconnect(bind.handler)
 
 
 ## Override in subclasses that have their own state machine logic to decide this.[br][br]

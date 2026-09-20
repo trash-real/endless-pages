@@ -93,6 +93,7 @@ spot_range = 50.0
 
 [node name="PlayerFlashlightComponent" type="Node" parent="FlashlightBase" unique_id=1150490959 node_paths=PackedStringArray("_flashlight_base", "_camera")]
 script = ExtResource("11_bgc8q")
+_lerp_speed = 8.0
 _flashlight_base = NodePath("..")
 _camera = NodePath("../../CameraBase/CameraYaw/CameraPitch/PlayerCamera")
 metadata/_custom_type_script = "uid://dfmkrc7st8wck"

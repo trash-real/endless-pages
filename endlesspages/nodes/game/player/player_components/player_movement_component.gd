@@ -16,7 +16,7 @@ func init() -> void:
 	_input.run_released.connect(_on_input_run_released)
 
 
-func physics_tick(_delta: float) -> void:
+func physics_tick(delta: float) -> void:
 	var previous_vel := _player.velocity
 	var input := _input.get_movement_direction()
 	
@@ -32,12 +32,12 @@ func physics_tick(_delta: float) -> void:
 	var direction := (right * input.x + forward * input.z).normalized()
 	
 	# Apply
-	_player.velocity.x = direction.x * _get_speed()
-	_player.velocity.z = direction.z * _get_speed()
+	_player.velocity.x = lerpf(_player.velocity.x, direction.x * _get_speed(), _player.stats.acceleration * delta)
+	_player.velocity.z = lerpf(_player.velocity.z, direction.z * _get_speed(), _player.stats.acceleration * delta)
 	
-	if previous_vel == Vector3.ZERO and _player.velocity != Vector3.ZERO:
+	if previous_vel == Vector3.ZERO and direction != Vector3.ZERO:
 		_on_begin_moving()
-	if previous_vel != Vector3.ZERO and _player.velocity == Vector3.ZERO:
+	if direction == Vector3.ZERO:
 		_change_state(MovementState.STILL)
 
 

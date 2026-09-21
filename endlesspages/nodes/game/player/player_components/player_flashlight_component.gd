@@ -1,4 +1,4 @@
-class_name PlayerFlashlightRotationComponent
+class_name PlayerFlashlightRotation
 extends PlayerComponent
 ## Handles all actions relating to rotating the player's flashlight.
 
@@ -17,13 +17,13 @@ extends PlayerComponent
 var _input: InputComponent
 var _attractor: Node3D = null # TODO: Replace type with a FlashlightAttractionArea :)
 
-var _run_tween: Tween
+var _rotation_tween: Tween
 var _run_weight: float = 0.0
 
 const ROTATION_BOUNDS_X: Vector2 = Vector2(-89, 89)
-const RUN_OFFSET_X: float = -45.0
-const RUN_WEIGHT_MIN: float = -0.1  # small dip allowed
-const RUN_WEIGHT_MAX: float = 1.15  # small overshoot allowed
+const RUN_OFFSET_X: float = -50.0
+const RUN_WEIGHT_MIN: float = -0.3  # small dip allowed
+const RUN_WEIGHT_MAX: float = 1.3  # small overshoot allowed
 
 
 func init() -> void:
@@ -49,7 +49,7 @@ func _base_follow_camera(delta: float) -> void:
 	var current_quat := _flashlight_base.global_transform.basis.get_rotation_quaternion()
 	var target_quat := target.global_transform.basis.get_rotation_quaternion()
 	
-	var interp := current_quat.slerp(target_quat, _get_lerp_delta(_camera_follow_lerp_speed, delta))
+	var interp := current_quat.slerp(target_quat, Shortcuts.get_lerp_delta(_camera_follow_lerp_speed, delta))
 	
 	_flashlight_base.global_transform.basis = Basis(interp)
 
@@ -71,24 +71,20 @@ func _apply_run_offset() -> void:
 
 
 func _tween_run_weight(target: float, settings: TweenSettings) -> void:
-	if _run_tween:
-		_run_tween.kill()
+	if _rotation_tween:
+		_rotation_tween.kill()
 	
 	var distance := absf(target - _run_weight)
 	if is_zero_approx(distance):
 		return
 	
-	_run_tween = create_tween()
-	_run_tween.tween_property(self, "_run_weight", target, settings.time * distance)\
+	_rotation_tween = create_tween()
+	_rotation_tween.tween_property(self, "_run_weight", target, settings.time * distance)\
 		.set_ease(settings.ease).set_trans(settings.trans)
 
 
 func _on_player_movement_state_changed(from: int, to: int) -> void:
-	if from == PlayerMovementComponent.MovementState.RUNNING:
+	if from == PlayerMovement.MovementState.RUNNING:
 		_tween_run_weight(0.0, _stop_run_settings)
-	elif to == PlayerMovementComponent.MovementState.RUNNING:
+	elif to == PlayerMovement.MovementState.RUNNING:
 		_tween_run_weight(1.0, _start_run_settings)
-
-
-func _get_lerp_delta(speed: float, delta: float) -> float:
-	return 1.0 - exp(-speed * delta)

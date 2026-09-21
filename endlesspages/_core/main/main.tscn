@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://cmfdtq1nrum3s" path="res://nodes/game/maps/map_test_1/map_test_1.tscn" id="1_cv2pg"]
 [ext_resource type="PackedScene" uid="uid://ub6136cfun7q" path="res://nodes/game/player/player.tscn" id="2_a8nhc"]
 [ext_resource type="Script" uid="uid://bd046eokvcnu2" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="3_a8nhc"]
-[ext_resource type="Shader" uid="uid://ddfqdbve8eskp" path="res://fourcolors_screen.gdshader" id="4_weaco"]
+[ext_resource type="Shader" uid="uid://ddfqdbve8eskp" path="res://assets/shaders/fourcolors_screen.gdshader" id="4_weaco"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_61opr"]
 shader = ExtResource("4_weaco")

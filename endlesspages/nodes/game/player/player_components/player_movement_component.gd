@@ -1,16 +1,16 @@
-class_name PlayerMovementComponent
+class_name PlayerMovement
 extends PlayerComponent
 
 enum MovementState { STILL, WALKING, RUNNING }
 
 var _input: InputComponent
-var _camera: PlayerCameraComponent
+var _camera: PlayerCameraRotation
 
 
 func init() -> void:
 	super.init()
 	_input = _player.components.get_component(InputComponent)
-	_camera = _player.components.get_component(PlayerCameraComponent)
+	_camera = _player.components.get_component(PlayerCameraRotation)
 	
 	create_bind(_input.run_pressed, _on_input_run_pressed)
 	create_bind(_input.run_released, _on_input_run_released)
@@ -31,8 +31,9 @@ func physics_tick(delta: float) -> void:
 	var direction := (right * input.x + forward * input.z).normalized()
 	
 	# Apply
-	_player.velocity.x = lerpf(_player.velocity.x, direction.x * _get_speed(), _player.stats.acceleration * delta)
-	_player.velocity.z = lerpf(_player.velocity.z, direction.z * _get_speed(), _player.stats.acceleration * delta)
+	var lerp_delta := Shortcuts.get_lerp_delta(_player.stats.acceleration, delta)
+	_player.velocity.x = lerpf(_player.velocity.x, direction.x * _get_speed(), lerp_delta)
+	_player.velocity.z = lerpf(_player.velocity.z, direction.z * _get_speed(), lerp_delta)
 	
 	var moving := direction != Vector3.ZERO
 	if moving and _player.movement_state.get_state() == MovementState.STILL:

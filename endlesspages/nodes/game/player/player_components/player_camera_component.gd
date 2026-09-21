@@ -1,4 +1,4 @@
-class_name PlayerCameraComponent
+class_name PlayerCameraRotation
 extends PlayerComponent
 ## Handles the player camera's rotation.
 
@@ -32,8 +32,9 @@ func tick(delta: float) -> void:
 
 
 func _rotate_camera(delta: float) -> void:
-	var x := lerp_angle(_camera_x.rotation.x, _target_rotation.x, _lerp_speed * delta)
-	var y := lerp_angle(_camera_y.rotation.y, _target_rotation.y, _lerp_speed * delta)
+	var lerp_delta := Shortcuts.get_lerp_delta(_lerp_speed, delta)
+	var x := lerp_angle(_camera_x.rotation.x, _target_rotation.x, lerp_delta)
+	var y := lerp_angle(_camera_y.rotation.y, _target_rotation.y, lerp_delta)
 	
 	_camera_x.rotation.x = x
 	_camera_y.rotation.y = y

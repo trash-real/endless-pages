@@ -9,7 +9,7 @@ extends CharacterBody3D
 
 @export var stats: PlayerStats
 
-var movement_state: StateMachine = StateMachine.new(PlayerMovementComponent.MovementState.STILL)
+var movement_state: StateMachine = StateMachine.new(PlayerMovement.MovementState.STILL)
 
 @onready var components: ComponentHost = ComponentHost.new(self)
 

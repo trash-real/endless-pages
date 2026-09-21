@@ -1,9 +1,6 @@
 class_name GravityComponent
 extends Component
 ## Component that applies gravity to a CharacterBody3D.
-##
-## Attach to anything with a state machine to tie it to that Node's active states.[br]
-## Can be used on [Player], Enemy3D, etc.
 
 var _target: CharacterBody3D
 

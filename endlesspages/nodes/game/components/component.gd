@@ -41,6 +41,9 @@ func refresh() -> void:
 	state_changed()
 
 
+## Component signal handler.
+## 
+## Auto connects/disconnects signal to specified callable on activate/deactivate.
 class Binding:
 	var sig: Signal
 	var handler: Callable

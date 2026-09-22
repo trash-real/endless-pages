@@ -28,8 +28,6 @@ duration = 0.5
 transition = 3
 ease = 1
 
-[sub_resource type="SphereShape3D" id="SphereShape3D_g4v7s"]
-
 [sub_resource type="Resource" id="Resource_ts7x6"]
 script = ExtResource("11_yrsia")
 time = 0.33
@@ -41,6 +39,8 @@ script = ExtResource("11_yrsia")
 ease = 2
 trans = 10
 metadata/_custom_type_script = "uid://dqiid0ps7nvv6"
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_g4v7s"]
 
 [node name="Player" type="CharacterBody3D" unique_id=777005718]
 script = ExtResource("1_86jdl")
@@ -72,19 +72,6 @@ metadata/_custom_type_script = "uid://bmq1lwfn58w1p"
 [node name="CameraBase" type="Node3D" parent="." unique_id=1245846802]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
 
-[node name="PlayerCameraTilt" type="Node" parent="CameraBase" unique_id=2141604790 node_paths=PackedStringArray("_target")]
-script = ExtResource("7_6upwa")
-_target = NodePath("../CameraYaw/CameraPitch/CameraBobber")
-metadata/_custom_type_script = "uid://cuhus4cxqm1ld"
-
-[node name="PlayerCameraBobbing" type="Node" parent="CameraBase" unique_id=133536690 node_paths=PackedStringArray("_camera_base")]
-script = ExtResource("7_yrsia")
-_x_amplitude = 0.075
-_y_amplitude = 0.15
-_base_step_rate = 1.25
-_camera_base = NodePath("../CameraYaw/CameraPitch/CameraBobber")
-metadata/_custom_type_script = "uid://bxoqh76g702ti"
-
 [node name="PlayerCameraRotation" type="Node" parent="CameraBase" unique_id=1795022194 node_paths=PackedStringArray("_camera_y", "_camera_x", "_camera")]
 script = ExtResource("8_ko323")
 _sensitivity = 0.002
@@ -101,6 +88,19 @@ editor_description = "Handles camera X rotation."
 
 [node name="CameraBobber" type="Node3D" parent="CameraBase/CameraYaw/CameraPitch" unique_id=1644199071]
 
+[node name="PlayerCameraBobbing" type="Node" parent="CameraBase/CameraYaw/CameraPitch/CameraBobber" unique_id=133536690 node_paths=PackedStringArray("_camera_base")]
+script = ExtResource("7_yrsia")
+_x_amplitude = 0.075
+_y_amplitude = 0.15
+_base_step_rate = 1.25
+_camera_base = NodePath("..")
+metadata/_custom_type_script = "uid://bxoqh76g702ti"
+
+[node name="PlayerCameraTilt" type="Node" parent="CameraBase/CameraYaw/CameraPitch/CameraBobber" unique_id=2141604790 node_paths=PackedStringArray("_target")]
+script = ExtResource("7_6upwa")
+_target = NodePath("..")
+metadata/_custom_type_script = "uid://cuhus4cxqm1ld"
+
 [node name="PlayerCamera" type="Node3D" parent="CameraBase/CameraYaw/CameraPitch/CameraBobber" unique_id=2087166911]
 script = ExtResource("1_xy23d")
 priority = 1
@@ -111,6 +111,16 @@ metadata/_custom_type_script = "uid://csjccrhj5wnx7"
 [node name="FlashlightBase" type="Node3D" parent="." unique_id=371934921]
 editor_description = "Gets rotated by PlayerFlashlightComponent. Always rotates to follow camera."
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+
+[node name="PlayerFlashlightRotation" type="Node" parent="FlashlightBase" unique_id=1150490959 node_paths=PackedStringArray("_flashlight_base", "_run_offset_node", "_camera")]
+script = ExtResource("11_bgc8q")
+_camera_follow_lerp_speed = 50.0
+_start_run_settings = SubResource("Resource_ts7x6")
+_stop_run_settings = SubResource("Resource_56pq6")
+_flashlight_base = NodePath("..")
+_run_offset_node = NodePath("../RunOffset")
+_camera = NodePath("../../CameraBase/CameraYaw/CameraPitch/CameraBobber/PlayerCamera")
+metadata/_custom_type_script = "uid://dfmkrc7st8wck"
 
 [node name="RunOffset" type="Node3D" parent="FlashlightBase" unique_id=12650867]
 editor_description = "All other rotations to flashlight apply here. (Running, Attracted, etc.)"
@@ -124,13 +134,3 @@ shape = SubResource("SphereShape3D_g4v7s")
 target_position = Vector3(0, 0, -2)
 max_results = 1
 collision_mask = 4
-
-[node name="PlayerFlashlightRotation" type="Node" parent="FlashlightBase" unique_id=1150490959 node_paths=PackedStringArray("_flashlight_base", "_run_offset_node", "_camera")]
-script = ExtResource("11_bgc8q")
-_camera_follow_lerp_speed = 50.0
-_start_run_settings = SubResource("Resource_ts7x6")
-_stop_run_settings = SubResource("Resource_56pq6")
-_flashlight_base = NodePath("..")
-_run_offset_node = NodePath("../RunOffset")
-_camera = NodePath("../../CameraBase/CameraYaw/CameraPitch/CameraBobber/PlayerCamera")
-metadata/_custom_type_script = "uid://dfmkrc7st8wck"

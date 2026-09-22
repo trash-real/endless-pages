@@ -7,7 +7,7 @@ signal target_changed(new: InteractibleComponent)
 
 @export var interact_cast: ShapeCast3D
 
-var _target: InteractibleComponent
+var _target: InteractibleComponent = null
 
 
 func tick(_delta: float) -> void:
@@ -34,6 +34,8 @@ func _find_target() -> InteractibleComponent:
 
 
 func _update_target(new: InteractibleComponent) -> void:
+	print("Target updated")
+	
 	if _target:
 		_target.set_targeted(false)
 	

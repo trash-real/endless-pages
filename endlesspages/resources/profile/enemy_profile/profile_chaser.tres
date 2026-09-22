@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="EnemyProfile" format=3 uid="uid://uigliihdxc7b"]
+
+[ext_resource type="Texture2D" uid="uid://oma3aqhh4qor" path="res://assets/art/icons/enemy/chaser_icon.aseprite" id="1_ejakd"]
+[ext_resource type="Script" uid="uid://7wf0rk7m83iu" path="res://resources/profile/enemy_profile/enemy_profile.gd" id="1_sep6i"]
+
+[resource]
+script = ExtResource("1_sep6i")
+name = "Chaser"
+description = "Chaser enemy."
+icon = ExtResource("1_ejakd")
+metadata/_custom_type_script = "uid://7wf0rk7m83iu"

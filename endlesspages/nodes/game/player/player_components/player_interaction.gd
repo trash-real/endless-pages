@@ -27,15 +27,14 @@ func deactivate() -> void:
 
 func _find_target() -> InteractibleComponent:
 	if interact_cast.is_colliding():
-		var node := interact_cast.get_collider(0)
-		if node is InteractibleComponent:
-			return node
+		var node: Node = interact_cast.get_collider(0)
+		var parent := node.get_parent()
+		if parent is InteractibleComponent:
+			return parent
 	return null
 
 
 func _update_target(new: InteractibleComponent) -> void:
-	print("Target updated")
-	
 	if _target:
 		_target.set_targeted(false)
 	

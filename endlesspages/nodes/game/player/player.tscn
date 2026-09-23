@@ -7,6 +7,7 @@
 [ext_resource type="Resource" uid="uid://b04tg5vcvrh24" path="res://resources/player_stats/player_stats_default.tres" id="2_fv834"]
 [ext_resource type="Script" uid="uid://dfn22qoql1065" path="res://nodes/game/components/gravity_component.gd" id="4_86jdl"]
 [ext_resource type="Script" uid="uid://bmq1lwfn58w1p" path="res://nodes/game/player/player_components/movement/player_movement.gd" id="6_3fw2k"]
+[ext_resource type="Script" uid="uid://bnebmfopig042" path="res://nodes/game/player/player_components/player_interaction.gd" id="7_3qea4"]
 [ext_resource type="Script" uid="uid://cuhus4cxqm1ld" path="res://nodes/game/player/player_components/camera/player_camera_tilt.gd" id="7_6upwa"]
 [ext_resource type="Script" uid="uid://cf5crmfj6c4d3" path="res://nodes/game/components/input_component.gd" id="7_fv834"]
 [ext_resource type="Script" uid="uid://bxoqh76g702ti" path="res://nodes/game/player/player_components/camera/player_camera_bobbing.gd" id="7_yrsia"]
@@ -28,6 +29,8 @@ duration = 0.5
 transition = 3
 ease = 1
 
+[sub_resource type="SphereShape3D" id="SphereShape3D_g4v7s"]
+
 [sub_resource type="Resource" id="Resource_ts7x6"]
 script = ExtResource("11_yrsia")
 time = 0.33
@@ -39,8 +42,6 @@ script = ExtResource("11_yrsia")
 ease = 2
 trans = 10
 metadata/_custom_type_script = "uid://dqiid0ps7nvv6"
-
-[sub_resource type="SphereShape3D" id="SphereShape3D_g4v7s"]
 
 [node name="Player" type="CharacterBody3D" unique_id=777005718]
 script = ExtResource("1_86jdl")
@@ -68,6 +69,12 @@ metadata/_custom_type_script = "uid://dfn22qoql1065"
 script = ExtResource("6_3fw2k")
 blocked_by = Array[int]([1])
 metadata/_custom_type_script = "uid://bmq1lwfn58w1p"
+
+[node name="PlayerInteraction" type="Node" parent="." unique_id=882021103 node_paths=PackedStringArray("interact_cast")]
+script = ExtResource("7_3qea4")
+interact_cast = NodePath("../CameraBase/CameraYaw/CameraPitch/InteractCast")
+active_move_states = Array[int]([0, 1])
+metadata/_custom_type_script = "uid://bnebmfopig042"
 
 [node name="CameraBase" type="Node3D" parent="." unique_id=1245846802]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
@@ -98,6 +105,9 @@ metadata/_custom_type_script = "uid://bxoqh76g702ti"
 
 [node name="PlayerCameraTilt" type="Node" parent="CameraBase/CameraYaw/CameraPitch/CameraBobber" unique_id=2141604790 node_paths=PackedStringArray("_target")]
 script = ExtResource("7_6upwa")
+_base_tilt = 0.4
+_max_tilt = 4.0
+_lerp_speed = 3.0
 _target = NodePath("..")
 metadata/_custom_type_script = "uid://cuhus4cxqm1ld"
 
@@ -108,8 +118,15 @@ tween_resource = SubResource("Resource_86jdl")
 tween_on_load = false
 metadata/_custom_type_script = "uid://csjccrhj5wnx7"
 
+[node name="InteractCast" type="ShapeCast3D" parent="CameraBase/CameraYaw/CameraPitch" unique_id=1580368006]
+shape = SubResource("SphereShape3D_g4v7s")
+target_position = Vector3(0, 0, -2)
+max_results = 1
+collision_mask = 4
+collide_with_areas = true
+
 [node name="FlashlightBase" type="Node3D" parent="." unique_id=371934921]
-editor_description = "Gets rotated by PlayerFlashlightComponent. Always rotates to follow camera."
+editor_description = "Gets rotated by PlayerFlashlightRotation. Always rotates to follow camera."
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
 
 [node name="PlayerFlashlightRotation" type="Node" parent="FlashlightBase" unique_id=1150490959 node_paths=PackedStringArray("_flashlight_base", "_run_offset_node", "_camera")]
@@ -128,9 +145,3 @@ editor_description = "All other rotations to flashlight apply here. (Running, At
 [node name="SpotLight3D" type="SpotLight3D" parent="FlashlightBase/RunOffset" unique_id=1364317176]
 light_energy = 10.0
 spot_range = 50.0
-
-[node name="InteractCast" type="ShapeCast3D" parent="FlashlightBase/RunOffset" unique_id=1580368006]
-shape = SubResource("SphereShape3D_g4v7s")
-target_position = Vector3(0, 0, -2)
-max_results = 1
-collision_mask = 4

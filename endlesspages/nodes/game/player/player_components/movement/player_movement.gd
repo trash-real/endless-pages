@@ -1,7 +1,7 @@
 class_name PlayerMovement
 extends PlayerComponent
 
-enum MovementState { STILL, WALKING, RUNNING }
+enum MovementState { STILL, WALKING, RUNNING, }
 
 var _input: InputComponent
 var _camera: PlayerCameraRotation
@@ -14,6 +14,7 @@ func init() -> void:
 	
 	create_bind(_input.run_pressed, _on_input_run_pressed)
 	create_bind(_input.run_released, _on_input_run_released)
+	create_bind(Constraints.changed, _on_constraints_changed)
 
 
 func physics_tick(delta: float) -> void:
@@ -57,6 +58,9 @@ func _get_speed() -> float:
 
 
 func _change_state(new: MovementState):
+	if Constraints.has(Constraint.Type.RUN_LOCKED) and new == MovementState.RUNNING:
+		return
+	
 	_player.movement_state.request(new)
 
 
@@ -75,5 +79,12 @@ func _on_input_run_pressed() -> void:
 
 func _on_input_run_released() -> void:
 	if _player.velocity != Vector3.ZERO:
+		_change_state(MovementState.WALKING)
+	else:
+		_change_state(MovementState.STILL)
+
+
+func _on_constraints_changed() -> void:
+	if Constraints.has(Constraint.Type.RUN_LOCKED) and _player.movement_state.get_state() == MovementState.RUNNING:
 		_change_state(MovementState.WALKING)
 #endregion

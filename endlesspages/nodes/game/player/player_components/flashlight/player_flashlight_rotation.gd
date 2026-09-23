@@ -15,7 +15,6 @@ extends PlayerComponent
 @export var _camera: PhantomCamera3D
 
 var _input: InputComponent
-var _attractor: Node3D = null # TODO: Replace type with a FlashlightAttractionArea :)
 
 var _rotation_tween: Tween
 var _run_weight: float = 0.0

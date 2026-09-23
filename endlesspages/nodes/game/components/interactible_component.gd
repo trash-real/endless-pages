@@ -1,5 +1,5 @@
 class_name InteractibleComponent
-extends Node
+extends Node3D
 ## Tracks interactions from the player.
 
 signal interacted

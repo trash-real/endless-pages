@@ -2,6 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://dxcixrsf110ai" path="res://addons/godot-prototype-texture/PNG/grid_1024x1024/grid_red_1024x1024.png" id="1_d2ef7"]
 [ext_resource type="Script" uid="uid://d4l8dgpw3uqe6" path="res://nodes/game/components/interactible_component.gd" id="2_7cywf"]
+[ext_resource type="Script" uid="uid://c0oky3gy0l1n1" path="res://nodes/game/components/flashlight_attractor_component.gd" id="3_u3kvr"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_bh34g"]
 sky_top_color = Color(0, 0, 0, 1)
@@ -35,10 +36,12 @@ use_collision = true
 size = Vector3(50, 1, 50)
 
 [node name="CSGCylinder3D" type="CSGCylinder3D" parent="." unique_id=684294359]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -5)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -5)
 
 [node name="InteractibleComponent" type="Node3D" parent="CSGCylinder3D" unique_id=620470918]
 script = ExtResource("2_7cywf")
+prompt = "INTERACT
+[LCLICK]"
 metadata/_custom_type_script = "uid://d4l8dgpw3uqe6"
 
 [node name="Area3D" type="Area3D" parent="CSGCylinder3D/InteractibleComponent" unique_id=1685610181]
@@ -47,3 +50,8 @@ collision_mask = 0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="CSGCylinder3D/InteractibleComponent/Area3D" unique_id=1683629001]
 shape = SubResource("CylinderShape3D_g4v7s")
+
+[node name="FlashlightAttractorComponent" type="Node" parent="CSGCylinder3D" unique_id=1579537146 node_paths=PackedStringArray("target")]
+script = ExtResource("3_u3kvr")
+target = NodePath("..")
+metadata/_custom_type_script = "uid://c0oky3gy0l1n1"

@@ -23,6 +23,10 @@ extends Resource
 ## Determines SpotLight3D's angle value.[br]
 ## Degree angle of spotlight.
 @export var light_angle: float = 45.0
+## Determines the time and animation that plays when starting to run.
+@export var light_start_run_tween: TweenSettings
+## Determines the time and animation that plays when stopping running.
+@export var light_stop_run_tween: TweenSettings
 
 @export_group("Radar", "radar_")
 ## 1.0 battery = 1 second.
@@ -30,7 +34,7 @@ extends Resource
 ## Maximum amount of battery.
 @export var radar_max_battery: float = 60.0
 ## Amount per second the radar battery drains.
-@export var radar_drain_per_sec: float = 1.0
+@export var radar_drain_sec: float = 1.0
 
 @export_group("Movement")
 

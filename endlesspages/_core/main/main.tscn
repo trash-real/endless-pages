@@ -34,6 +34,7 @@ interpolation_mode = 1
 metadata/_custom_type_script = "uid://bd046eokvcnu2"
 
 [node name="ScreenColorCanvas" type="CanvasLayer" parent="." unique_id=1487558653]
+layer = 10
 
 [node name="ColorRect" type="ColorRect" parent="ScreenColorCanvas" unique_id=477819267]
 material = SubResource("ShaderMaterial_61opr")

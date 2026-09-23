@@ -1,7 +1,22 @@
 [gd_resource type="Resource" script_class="PlayerStats" format=3 uid="uid://b04tg5vcvrh24"]
 
 [ext_resource type="Script" uid="uid://ck7f5tmllyti7" path="res://resources/player_stats/player_stats.gd" id="1_fcben"]
+[ext_resource type="Script" uid="uid://dqiid0ps7nvv6" path="res://resources/tween_settings/tween_settings.gd" id="1_terie"]
+
+[sub_resource type="Resource" id="Resource_fcben"]
+script = ExtResource("1_terie")
+time = 0.33
+trans = 10
+metadata/_custom_type_script = "uid://dqiid0ps7nvv6"
+
+[sub_resource type="Resource" id="Resource_terie"]
+script = ExtResource("1_terie")
+ease = 2
+trans = 10
+metadata/_custom_type_script = "uid://dqiid0ps7nvv6"
 
 [resource]
 script = ExtResource("1_fcben")
+light_start_run_tween = SubResource("Resource_fcben")
+light_stop_run_tween = SubResource("Resource_terie")
 metadata/_custom_type_script = "uid://ck7f5tmllyti7"

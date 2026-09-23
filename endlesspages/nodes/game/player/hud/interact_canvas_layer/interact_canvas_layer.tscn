@@ -1,0 +1,50 @@
+[gd_scene format=3 uid="uid://cvc427ax3okvl"]
+
+[ext_resource type="Script" uid="uid://cklw11pulhx60" path="res://nodes/game/player/hud/interact_canvas_layer/interact_canvas_layer.gd" id="1_arhyo"]
+[ext_resource type="Script" uid="uid://dqiid0ps7nvv6" path="res://resources/tween_settings/tween_settings.gd" id="2_6v0ry"]
+
+[sub_resource type="Resource" id="Resource_arhyo"]
+script = ExtResource("2_6v0ry")
+time = 0.33
+metadata/_custom_type_script = "uid://dqiid0ps7nvv6"
+
+[sub_resource type="Resource" id="Resource_6v0ry"]
+script = ExtResource("2_6v0ry")
+time = 0.33
+ease = 0
+trans = 1
+metadata/_custom_type_script = "uid://dqiid0ps7nvv6"
+
+[node name="InteractCanvasLayer" type="CanvasLayer" unique_id=1660155778 node_paths=PackedStringArray("_label")]
+script = ExtResource("1_arhyo")
+_open_settings = SubResource("Resource_arhyo")
+_close_settings = SubResource("Resource_6v0ry")
+_label = NodePath("Control/RichTextLabel")
+
+[node name="Control" type="Control" parent="." unique_id=1311801765]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Control" unique_id=1876704062]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -312.5
+offset_top = -226.0
+offset_right = 312.5
+grow_horizontal = 2
+grow_vertical = 0
+offset_transform_enabled = true
+bbcode_enabled = true
+text = "TAKE PAGE
+[LCLICK]"
+horizontal_alignment = 1
+vertical_alignment = 1

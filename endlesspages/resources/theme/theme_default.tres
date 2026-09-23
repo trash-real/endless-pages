@@ -1,0 +1,9 @@
+[gd_resource type="Theme" format=3 uid="uid://hcsljjc8eb8q"]
+
+[resource]
+RichTextLabel/constants/outline_size = 12
+RichTextLabel/font_sizes/bold_font_size = 32
+RichTextLabel/font_sizes/bold_italics_font_size = 32
+RichTextLabel/font_sizes/italics_font_size = 32
+RichTextLabel/font_sizes/mono_font_size = 32
+RichTextLabel/font_sizes/normal_font_size = 32

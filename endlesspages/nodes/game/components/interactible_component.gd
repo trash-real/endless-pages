@@ -5,12 +5,7 @@ extends Node3D
 signal interacted
 signal targeted_update(targeted: bool)
 
-@export var parent: Node
-
-
-func _ready() -> void:
-	if not parent:
-		parent = get_parent()
+@export_multiline var prompt: String = "[LCLICK]\nInteract"
 
 
 func interact() -> void:

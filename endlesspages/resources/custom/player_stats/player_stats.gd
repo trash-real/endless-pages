@@ -5,13 +5,13 @@ extends Resource
 ## For endless mode, a new one should be made using the selected character's default PlayerStats resource as a template.[br]
 ## All mid-run stat changes should be applied to the duplicate.
 
-@export_group("Movement")
+@export_group("Movement", "move_")
 ## Player speed while moving.
-@export var walk_speed: float = 3.5
+@export var move_walk_speed: float = 3.5
 ## Player speed while moving and holding shift.
-@export var run_speed: float = 5.0
+@export var move_run_speed: float = 5.0
 ## How quickly the player gets to their desired speed. Higher = faster.
-@export var acceleration: float = 10.0
+@export var move_acceleration: float = 10.0
 
 @export_group("Flashlight", "light_")
 ## Determines SpotLight3D's range value.[br]
@@ -23,9 +23,9 @@ extends Resource
 ## Determines SpotLight3D's angle value.[br]
 ## Degree angle of spotlight.
 @export var light_angle: float = 45.0
-## Determines the time and animation that plays when starting to run.
+## Determines the animation that plays when starting running.
 @export var light_start_run_tween: TweenSettings
-## Determines the time and animation that plays when stopping running.
+## Determines the animation that plays when stopping running.
 @export var light_stop_run_tween: TweenSettings
 
 @export_group("Radar", "radar_")
@@ -36,7 +36,4 @@ extends Resource
 ## Amount per second the radar battery drains.
 @export var radar_drain_sec: float = 1.0
 
-@export_group("Movement")
-
-
-@export_group("Movement")
+@export_group("Sound", "sound_")

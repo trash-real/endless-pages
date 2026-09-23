@@ -32,7 +32,7 @@ func physics_tick(delta: float) -> void:
 	var direction := (right * input.x + forward * input.z).normalized()
 	
 	# Apply
-	var lerp_delta := Shortcuts.get_lerp_delta(_player.stats.acceleration, delta)
+	var lerp_delta := Shortcuts.get_lerp_delta(_player.stats.move_acceleration, delta)
 	_player.velocity.x = lerpf(_player.velocity.x, direction.x * _get_speed(), lerp_delta)
 	_player.velocity.z = lerpf(_player.velocity.z, direction.z * _get_speed(), lerp_delta)
 	
@@ -50,11 +50,11 @@ func deactivate() -> void:
 func _get_speed() -> float:
 	match _player.movement_state.get_state():
 		MovementState.WALKING:
-			return _player.stats.walk_speed
+			return _player.stats.move_walk_speed
 		MovementState.RUNNING:
-			return _player.stats.run_speed
+			return _player.stats.move_run_speed
 		_:
-			return _player.stats.walk_speed
+			return _player.stats.move_walk_speed
 
 
 func _change_state(new: MovementState):

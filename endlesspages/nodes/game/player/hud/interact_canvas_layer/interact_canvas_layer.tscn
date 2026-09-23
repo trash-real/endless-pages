@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://cvc427ax3okvl"]
 
 [ext_resource type="Script" uid="uid://cklw11pulhx60" path="res://nodes/game/player/hud/interact_canvas_layer/interact_canvas_layer.gd" id="1_arhyo"]
-[ext_resource type="Script" uid="uid://dqiid0ps7nvv6" path="res://resources/tween_settings/tween_settings.gd" id="2_6v0ry"]
+[ext_resource type="Script" uid="uid://dqiid0ps7nvv6" path="res://resources/custom/tween_settings/tween_settings.gd" id="2_6v0ry"]
 
 [sub_resource type="Resource" id="Resource_arhyo"]
 script = ExtResource("2_6v0ry")

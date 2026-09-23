@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://csjccrhj5wnx7" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_3d.gd" id="1_xy23d"]
 [ext_resource type="Script" uid="uid://8umksf8e80fw" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="2_12ow2"]
 [ext_resource type="Texture2D" uid="uid://oma3aqhh4qor" path="res://assets/art/icons/enemy/chaser_icon.aseprite" id="2_bxokf"]
-[ext_resource type="Resource" uid="uid://b04tg5vcvrh24" path="res://resources/player_stats/player_stats_default.tres" id="2_fv834"]
+[ext_resource type="Resource" uid="uid://b04tg5vcvrh24" path="res://resources/custom/player_stats/player_stats_default.tres" id="2_fv834"]
 [ext_resource type="Script" uid="uid://dfn22qoql1065" path="res://nodes/game/components/gravity_component.gd" id="4_86jdl"]
 [ext_resource type="Script" uid="uid://bmq1lwfn58w1p" path="res://nodes/game/player/player_components/movement/player_movement.gd" id="6_3fw2k"]
 [ext_resource type="Script" uid="uid://bnebmfopig042" path="res://nodes/game/player/player_components/interaction/player_interaction.gd" id="7_3qea4"]
@@ -13,7 +13,7 @@
 [ext_resource type="Script" uid="uid://bxoqh76g702ti" path="res://nodes/game/player/player_components/camera/player_camera_bobbing.gd" id="7_yrsia"]
 [ext_resource type="Script" uid="uid://5g6ow70c13o" path="res://nodes/game/player/player_components/camera/player_camera_rotation.gd" id="8_ko323"]
 [ext_resource type="Script" uid="uid://dfmkrc7st8wck" path="res://nodes/game/player/player_components/flashlight/player_flashlight_rotation.gd" id="11_bgc8q"]
-[ext_resource type="Script" uid="uid://dqiid0ps7nvv6" path="res://resources/tween_settings/tween_settings.gd" id="11_yrsia"]
+[ext_resource type="Script" uid="uid://dqiid0ps7nvv6" path="res://resources/custom/tween_settings/tween_settings.gd" id="11_yrsia"]
 [ext_resource type="Script" uid="uid://cuo66dwxqn8u4" path="res://nodes/game/player/player_components/flashlight/player_flashlight_attract.gd" id="15_s6ych"]
 [ext_resource type="PackedScene" uid="uid://cvc427ax3okvl" path="res://nodes/game/player/hud/interact_canvas_layer/interact_canvas_layer.tscn" id="16_tkag7"]
 
@@ -73,12 +73,6 @@ script = ExtResource("6_3fw2k")
 blocked_by = Array[int]([1])
 metadata/_custom_type_script = "uid://bmq1lwfn58w1p"
 
-[node name="PlayerInteraction" type="Node" parent="." unique_id=882021103 node_paths=PackedStringArray("interact_cast")]
-script = ExtResource("7_3qea4")
-interact_cast = NodePath("../CameraBase/CameraYaw/CameraPitch/InteractCast")
-active_move_states = Array[int]([0, 1])
-metadata/_custom_type_script = "uid://bnebmfopig042"
-
 [node name="CameraBase" type="Node3D" parent="." unique_id=1245846802]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
 
@@ -124,8 +118,7 @@ metadata/_custom_type_script = "uid://csjccrhj5wnx7"
 [node name="InteractCast" type="ShapeCast3D" parent="CameraBase/CameraYaw/CameraPitch" unique_id=1580368006]
 shape = SubResource("SphereShape3D_g4v7s")
 target_position = Vector3(0, 0, -2)
-max_results = 1
-collision_mask = 4
+collision_mask = 5
 collide_with_areas = true
 
 [node name="FlashlightBase" type="Node3D" parent="." unique_id=371934921]
@@ -159,6 +152,12 @@ editor_description = "Handles rotating toward whatever the light is attracted to
 [node name="SpotLight3D" type="SpotLight3D" parent="FlashlightBase/RunOffset/Attraction" unique_id=1364317176]
 light_energy = 10.0
 spot_range = 50.0
+
+[node name="PlayerInteraction" type="Node" parent="." unique_id=882021103 node_paths=PackedStringArray("interact_cast")]
+script = ExtResource("7_3qea4")
+interact_cast = NodePath("../CameraBase/CameraYaw/CameraPitch/InteractCast")
+active_move_states = Array[int]([0, 1])
+metadata/_custom_type_script = "uid://bnebmfopig042"
 
 [node name="InteractCanvasLayer" parent="." unique_id=1660155778 node_paths=PackedStringArray("_interaction") instance=ExtResource("16_tkag7")]
 _interaction = NodePath("../PlayerInteraction")

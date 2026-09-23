@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="ColorSet" format=3 uid="uid://cv5fnmupvjqsc"]
 
-[ext_resource type="Script" uid="uid://cqxyxqcf72n8o" path="res://resources/color_sets/color_set.gd" id="1_b1riw"]
+[ext_resource type="Script" uid="uid://cqxyxqcf72n8o" path="res://resources/custom/color_sets/color_set.gd" id="1_b1riw"]
 
 [resource]
 resource_name = "green"

@@ -7,6 +7,12 @@ signal targeted_update(targeted: bool)
 
 @export_multiline var prompt: String = "[LCLICK]\nInteract"
 
+var _colliders: Array # CollisionShape3D
+
+
+func _ready() -> void:
+	_colliders = find_children("*", "CollisionShape3D") as Array[CollisionShape3D]
+
 
 func interact() -> void:
 	interacted.emit()
@@ -14,3 +20,8 @@ func interact() -> void:
 
 func set_targeted(targeted: bool) -> void:
 	targeted_update.emit(targeted)
+
+
+func set_enabled(enabled: bool) -> void:
+	for c in _colliders:
+		c.set_deferred("disabled", not enabled)

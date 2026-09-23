@@ -1,0 +1,36 @@
+[gd_scene format=3 uid="uid://lbjkvh3j8pkt"]
+
+[ext_resource type="Script" uid="uid://dt3fruicof2ho" path="res://nodes/game/page/page.gd" id="1_gimor"]
+[ext_resource type="Script" uid="uid://d4l8dgpw3uqe6" path="res://nodes/game/components/interactible_component.gd" id="1_i5mwk"]
+[ext_resource type="Script" uid="uid://c0oky3gy0l1n1" path="res://nodes/game/components/flashlight_attractor_component.gd" id="2_gimor"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_g4v7s"]
+size = Vector2(0.4, 0.6)
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_i5mwk"]
+data = PackedVector3Array(0.19999999, -0.29999998, 0, -0.19999999, -0.29999998, 0, 0.19999999, 0.29999998, 0, -0.19999999, -0.29999998, 0, -0.19999999, 0.29999998, 0, 0.19999999, 0.29999998, 0)
+
+[node name="Page" type="Node3D" unique_id=1611791717 node_paths=PackedStringArray("_interactible")]
+script = ExtResource("1_gimor")
+_interactible = NodePath("InteractibleComponent")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1846484942]
+mesh = SubResource("QuadMesh_g4v7s")
+
+[node name="InteractibleComponent" type="Node3D" parent="." unique_id=210612147]
+script = ExtResource("1_i5mwk")
+prompt = "[LCLICK]
+TAKE PAGE"
+metadata/_custom_type_script = "uid://d4l8dgpw3uqe6"
+
+[node name="Area3D" type="Area3D" parent="InteractibleComponent" unique_id=880346926]
+collision_layer = 4
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="InteractibleComponent/Area3D" unique_id=509151103]
+shape = SubResource("ConcavePolygonShape3D_i5mwk")
+
+[node name="FlashlightAttractorComponent" type="Node" parent="." unique_id=1262750254 node_paths=PackedStringArray("target")]
+script = ExtResource("2_gimor")
+target = NodePath("..")
+metadata/_custom_type_script = "uid://c0oky3gy0l1n1"

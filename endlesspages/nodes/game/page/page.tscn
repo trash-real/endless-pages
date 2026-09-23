@@ -21,6 +21,8 @@ mesh = SubResource("QuadMesh_g4v7s")
 script = ExtResource("1_i5mwk")
 prompt = "[LCLICK]
 TAKE PAGE"
+interacted_prompt = "PAGE TAKEN.
+"
 metadata/_custom_type_script = "uid://d4l8dgpw3uqe6"
 
 [node name="Area3D" type="Area3D" parent="InteractibleComponent" unique_id=880346926]

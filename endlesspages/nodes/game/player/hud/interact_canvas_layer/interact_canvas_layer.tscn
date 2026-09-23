@@ -10,9 +10,7 @@ metadata/_custom_type_script = "uid://dqiid0ps7nvv6"
 
 [sub_resource type="Resource" id="Resource_6v0ry"]
 script = ExtResource("2_6v0ry")
-time = 0.33
 ease = 0
-trans = 1
 metadata/_custom_type_script = "uid://dqiid0ps7nvv6"
 
 [node name="InteractCanvasLayer" type="CanvasLayer" unique_id=1660155778 node_paths=PackedStringArray("_label")]

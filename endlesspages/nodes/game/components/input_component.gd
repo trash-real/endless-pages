@@ -13,6 +13,12 @@ signal mouse_motion(relative: Vector2)
 
 #region Input
 func _unhandled_input(event: InputEvent) -> void:
+	if OS.is_debug_build():
+		if Input.is_key_label_pressed(KEY_F1):
+			Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+		elif Input.is_key_label_pressed(KEY_F2):
+			Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+	
 	if not enabled:
 		return
 	

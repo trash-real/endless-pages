@@ -5,7 +5,8 @@ extends Node3D
 signal interacted
 signal targeted_update(targeted: bool)
 
-@export_multiline var prompt: String = "[LCLICK]\nInteract"
+@export_multiline var prompt: String = "[LCLICK]\nINTERACT"
+@export_multiline var interacted_prompt: String = "INTERACTED.\n"
 
 var _colliders: Array # CollisionShape3D
 

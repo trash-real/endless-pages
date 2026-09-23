@@ -16,7 +16,12 @@ func _ready() -> void:
 	_label.offset_transform_position = _close_pos
 	_label.modulate = Color.TRANSPARENT
 	
+	_interaction.interacted.connect(_on_interaction_interacted)
 	_interaction.target_changed.connect(_on_interaction_target_changed)
+
+
+func _on_interaction_interacted(interact: InteractibleComponent) -> void:
+	_label.text = interact.interacted_prompt
 
 
 func _on_interaction_target_changed(new: InteractibleComponent) -> void:

@@ -7,10 +7,14 @@
 [ext_resource type="Shader" uid="uid://ddfqdbve8eskp" path="res://assets/shaders/fourcolors_screen.gdshader" id="4_weaco"]
 [ext_resource type="Script" uid="uid://dlxoff02y80r3" path="res://resources/custom/page_data/page_data.gd" id="5_w7epw"]
 [ext_resource type="Script" uid="uid://dxm5wssn4jcsb" path="res://resources/custom/page_generation_settings/page_generation_settings.gd" id="6_idani"]
+[ext_resource type="Script" uid="uid://c0wq7t7vdg1d7" path="res://nodes/game/page/hud/page_collection_canvas_layer/page_collection_canvas_layer.gd" id="7_idani"]
 
 [sub_resource type="Resource" id="Resource_ks4bd"]
 script = ExtResource("6_idani")
 metadata/_custom_type_script = "uid://dxm5wssn4jcsb"
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yf5fn"]
+bg_color = Color(1, 1, 1, 1)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_61opr"]
 shader = ExtResource("4_weaco")
@@ -43,6 +47,99 @@ metadata/_custom_type_script = "uid://bd046eokvcnu2"
 script = ExtResource("4_61opr")
 settings = SubResource("Resource_ks4bd")
 metadata/_custom_type_script = "uid://qexl1lhkw2b6"
+
+[node name="GameUI" type="Node" parent="Game" unique_id=158187144]
+
+[node name="PageCollectionCanvasLayer" type="CanvasLayer" parent="Game/GameUI" unique_id=1032803020]
+script = ExtResource("7_idani")
+
+[node name="Mask" type="Panel" parent="Game/GameUI/PageCollectionCanvasLayer" unique_id=846848478]
+clip_children = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -245.0
+offset_top = -25.0
+offset_right = 245.0
+offset_bottom = 25.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_yf5fn")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Game/GameUI/PageCollectionCanvasLayer/Mask" unique_id=2065305929]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -241.0
+offset_top = -43.0
+offset_right = 241.0
+offset_bottom = 43.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset_ratio = Vector2(0.5, 0.5)
+alignment = 1
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Game/GameUI/PageCollectionCanvasLayer/Mask/HBoxContainer" unique_id=1804480051]
+custom_minimum_size = Vector2(132, 50)
+custom_maximum_size = Vector2(132, 50)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Pages: "
+scroll_active = false
+vertical_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Game/GameUI/PageCollectionCanvasLayer/Mask/HBoxContainer" unique_id=1207243458]
+custom_maximum_size = Vector2(26, -1)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+offset_transform_enabled = true
+offset_transform_position = Vector2(0, -22.5)
+
+[node name="PageCountNew" type="RichTextLabel" parent="Game/GameUI/PageCollectionCanvasLayer/Mask/HBoxContainer/VBoxContainer" unique_id=1843639273]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+text = "0"
+fit_content = true
+scroll_active = false
+vertical_alignment = 1
+
+[node name="PageCountOld" type="RichTextLabel" parent="Game/GameUI/PageCollectionCanvasLayer/Mask/HBoxContainer/VBoxContainer" unique_id=203033621]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+text = "0"
+fit_content = true
+scroll_active = false
+vertical_alignment = 1
+
+[node name="Separator" type="RichTextLabel" parent="Game/GameUI/PageCollectionCanvasLayer/Mask/HBoxContainer" unique_id=1546348283]
+custom_minimum_size = Vector2(20, 50)
+custom_maximum_size = Vector2(20, 50)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+text = "/"
+fit_content = true
+scroll_active = false
+vertical_alignment = 1
+
+[node name="RequiredPagesText" type="RichTextLabel" parent="Game/GameUI/PageCollectionCanvasLayer/Mask/HBoxContainer" unique_id=780439924]
+custom_minimum_size = Vector2(26, 50)
+custom_maximum_size = Vector2(26, 50)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+text = "0"
+fit_content = true
+scroll_active = false
+vertical_alignment = 1
 
 [node name="ScreenColorCanvas" type="CanvasLayer" parent="." unique_id=1487558653]
 layer = 10

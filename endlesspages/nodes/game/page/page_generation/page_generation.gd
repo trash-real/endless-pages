@@ -2,6 +2,8 @@ class_name PageGeneration
 extends Node
 ## Handles randomly generating pages in a map.
 
+static var instance: PageGeneration
+
 signal page_taken(page: Page)
 
 @export var settings: PageGenerationSettings
@@ -15,7 +17,8 @@ var _pages_until_refresh: int = 0
 
 
 func _ready() -> void:
-	setup()
+	instance = self
+	setup() # Should call from Map when loaded
 
 
 func setup() -> void:

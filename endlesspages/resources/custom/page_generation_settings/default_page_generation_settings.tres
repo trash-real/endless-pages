@@ -5,4 +5,5 @@
 
 [resource]
 script = ExtResource("2_fkbul")
+pages_until_refresh = 3
 metadata/_custom_type_script = "uid://dxm5wssn4jcsb"

@@ -32,7 +32,6 @@ transition = 3
 ease = 1
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_g4v7s"]
-radius = 0.4
 
 [sub_resource type="Resource" id="Resource_ts7x6"]
 script = ExtResource("11_yrsia")
@@ -84,6 +83,20 @@ _camera_x = NodePath("../CameraYaw/CameraPitch")
 _camera = NodePath("../CameraYaw/CameraPitch/CameraBobber/CameraTilt/PlayerCamera")
 metadata/_custom_type_script = "uid://5g6ow70c13o"
 
+[node name="PlayerCameraBob" type="Node" parent="CameraBase" unique_id=133536690 node_paths=PackedStringArray("_target")]
+script = ExtResource("7_yrsia")
+_x_amplitude = 0.02
+_y_amplitude = 0.08
+bob_intensity_multiplier = 1.6
+_base_step_rate = 1.6
+_target = NodePath("../CameraYaw/CameraPitch/CameraBobber")
+metadata/_custom_type_script = "uid://bxoqh76g702ti"
+
+[node name="PlayerCameraTilt" type="Node" parent="CameraBase" unique_id=2141604790 node_paths=PackedStringArray("_target")]
+script = ExtResource("7_6upwa")
+_target = NodePath("../CameraYaw/CameraPitch/CameraBobber/CameraTilt")
+metadata/_custom_type_script = "uid://cuhus4cxqm1ld"
+
 [node name="CameraYaw" type="Node3D" parent="CameraBase" unique_id=636160880]
 editor_description = "Handles camera Y rotation."
 
@@ -94,20 +107,6 @@ editor_description = "Handles camera X rotation."
 
 [node name="CameraTilt" type="Node3D" parent="CameraBase/CameraYaw/CameraPitch/CameraBobber" unique_id=1827535027]
 
-[node name="PlayerCameraBob" type="Node" parent="CameraBase/CameraYaw/CameraPitch/CameraBobber/CameraTilt" unique_id=133536690 node_paths=PackedStringArray("_target")]
-script = ExtResource("7_yrsia")
-_x_amplitude = 0.02
-_y_amplitude = 0.08
-bob_intensity_multiplier = 1.6
-_base_step_rate = 1.6
-_target = NodePath("../..")
-metadata/_custom_type_script = "uid://bxoqh76g702ti"
-
-[node name="PlayerCameraTilt" type="Node" parent="CameraBase/CameraYaw/CameraPitch/CameraBobber/CameraTilt" unique_id=2141604790 node_paths=PackedStringArray("_target")]
-script = ExtResource("7_6upwa")
-_target = NodePath("..")
-metadata/_custom_type_script = "uid://cuhus4cxqm1ld"
-
 [node name="PlayerCamera" type="Node3D" parent="CameraBase/CameraYaw/CameraPitch/CameraBobber/CameraTilt" unique_id=2087166911]
 script = ExtResource("1_xy23d")
 priority = 1
@@ -116,8 +115,9 @@ tween_on_load = false
 metadata/_custom_type_script = "uid://csjccrhj5wnx7"
 
 [node name="InteractCast" type="ShapeCast3D" parent="CameraBase/CameraYaw/CameraPitch" unique_id=1580368006]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.5)
 shape = SubResource("SphereShape3D_g4v7s")
-target_position = Vector3(0, 0, -2)
+target_position = Vector3(0, 0, -1.5)
 collision_mask = 5
 collide_with_areas = true
 

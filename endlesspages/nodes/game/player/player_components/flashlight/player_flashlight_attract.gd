@@ -17,6 +17,10 @@ func init() -> void:
 	create_bind(_interaction.target_changed, _on_interaction_target_changed)
 
 
+func deactivate() -> void:
+	_on_interaction_target_changed(null)
+
+
 func get_attraction_position() -> Variant:
 	if _interact_attractor == null:
 		return null

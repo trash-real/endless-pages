@@ -99,6 +99,7 @@ script = ExtResource("7_yrsia")
 _x_amplitude = 0.02
 _y_amplitude = 0.08
 bob_intensity_multiplier = 1.6
+_base_step_rate = 1.6
 _target = NodePath("../..")
 metadata/_custom_type_script = "uid://bxoqh76g702ti"
 

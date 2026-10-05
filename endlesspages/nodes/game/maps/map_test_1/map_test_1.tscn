@@ -41,5 +41,68 @@ material_override = SubResource("StandardMaterial3D_g4v7s")
 use_collision = true
 collision_mask = 0
 
-[node name="Page" parent="." unique_id=1611791717 instance=ExtResource("2_7cywf")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.4, -4.5)
+[node name="Page" parent="CSGCylinder3D" unique_id=1611791717 instance=ExtResource("2_7cywf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.39999998, 0.5)
+
+[node name="CSGCylinder3D2" type="CSGCylinder3D" parent="." unique_id=1258229881]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 5, 1, 0)
+material_override = SubResource("StandardMaterial3D_g4v7s")
+use_collision = true
+collision_mask = 0
+
+[node name="Page" parent="CSGCylinder3D2" unique_id=1975413416 instance=ExtResource("2_7cywf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.39999998, 0.5)
+
+[node name="CSGCylinder3D3" type="CSGCylinder3D" parent="." unique_id=1209377404]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5, 1, 0)
+material_override = SubResource("StandardMaterial3D_g4v7s")
+use_collision = true
+collision_mask = 0
+
+[node name="Page" parent="CSGCylinder3D3" unique_id=1231177959 instance=ExtResource("2_7cywf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.39999998, 0.5)
+
+[node name="CSGCylinder3D4" type="CSGCylinder3D" parent="." unique_id=707618360]
+transform = Transform3D(0.70710677, 0, -0.70710677, 0, 1, 0, 0.70710677, 0, 0.70710677, 6, 1, -6)
+material_override = SubResource("StandardMaterial3D_g4v7s")
+use_collision = true
+collision_mask = 0
+
+[node name="Page" parent="CSGCylinder3D4" unique_id=74546594 instance=ExtResource("2_7cywf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.39999998, 0.5)
+
+[node name="CSGCylinder3D8" type="CSGCylinder3D" parent="." unique_id=592054587]
+transform = Transform3D(-0.7071068, 0, 0.7071067, 0, 1, 0, -0.7071067, 0, -0.7071068, -6, 1, 6)
+material_override = SubResource("StandardMaterial3D_g4v7s")
+use_collision = true
+collision_mask = 0
+
+[node name="Page" parent="CSGCylinder3D8" unique_id=1908597113 instance=ExtResource("2_7cywf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.39999998, 0.5)
+
+[node name="CSGCylinder3D5" type="CSGCylinder3D" parent="." unique_id=182234574]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 1, 5)
+material_override = SubResource("StandardMaterial3D_g4v7s")
+use_collision = true
+collision_mask = 0
+
+[node name="Page" parent="CSGCylinder3D5" unique_id=607576603 instance=ExtResource("2_7cywf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.39999998, 0.5)
+
+[node name="CSGCylinder3D6" type="CSGCylinder3D" parent="." unique_id=1699230795]
+transform = Transform3D(0.70710677, 0, 0.70710677, 0, 1, 0, -0.70710677, 0, 0.70710677, -6, 1, -6)
+material_override = SubResource("StandardMaterial3D_g4v7s")
+use_collision = true
+collision_mask = 0
+
+[node name="Page" parent="CSGCylinder3D6" unique_id=1161167200 instance=ExtResource("2_7cywf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.39999998, 0.5)
+
+[node name="CSGCylinder3D7" type="CSGCylinder3D" parent="." unique_id=657648646]
+transform = Transform3D(-0.70710677, 0, -0.70710677, 0, 1, 0, 0.70710677, 0, -0.70710677, 6, 1, 6)
+material_override = SubResource("StandardMaterial3D_g4v7s")
+use_collision = true
+collision_mask = 0
+
+[node name="Page" parent="CSGCylinder3D7" unique_id=1091025815 instance=ExtResource("2_7cywf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.39999998, 0.5)

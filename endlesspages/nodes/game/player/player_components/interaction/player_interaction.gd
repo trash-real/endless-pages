@@ -16,7 +16,7 @@ func init() -> void:
 	
 	_input = _host.get_component(InputComponent)
 	
-	create_bind(_input.interacted, _on_input_interacted)
+	create_bind(_input.interact_pressed, _on_input_interact_pressed)
 
 
 func tick(_delta: float) -> void:
@@ -70,7 +70,7 @@ func _on_target_exiting() -> void:
 	target_changed.emit(null)
 
 
-func _on_input_interacted() -> void:
+func _on_input_interact_pressed() -> void:
 	if not is_instance_valid(_target):
 		return
 	var target := _target

@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="PageGenerationSettings" format=3 uid="uid://hvtfuifw0w1k"]
+
+[ext_resource type="Script" uid="uid://dlxoff02y80r3" path="res://resources/custom/page_data/page_data.gd" id="1_8hl1y"]
+[ext_resource type="Script" uid="uid://dxm5wssn4jcsb" path="res://resources/custom/page_generation_settings/page_generation_settings.gd" id="2_fkbul"]
+
+[resource]
+script = ExtResource("2_fkbul")
+metadata/_custom_type_script = "uid://dxm5wssn4jcsb"

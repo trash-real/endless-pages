@@ -3,7 +3,14 @@
 [ext_resource type="PackedScene" uid="uid://cmfdtq1nrum3s" path="res://nodes/game/maps/map_test_1/map_test_1.tscn" id="1_cv2pg"]
 [ext_resource type="PackedScene" uid="uid://ub6136cfun7q" path="res://nodes/game/player/player.tscn" id="2_a8nhc"]
 [ext_resource type="Script" uid="uid://bd046eokvcnu2" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="3_a8nhc"]
+[ext_resource type="Script" uid="uid://qexl1lhkw2b6" path="res://nodes/game/page/page_generation/page_generation.gd" id="4_61opr"]
 [ext_resource type="Shader" uid="uid://ddfqdbve8eskp" path="res://assets/shaders/fourcolors_screen.gdshader" id="4_weaco"]
+[ext_resource type="Script" uid="uid://dlxoff02y80r3" path="res://resources/custom/page_data/page_data.gd" id="5_w7epw"]
+[ext_resource type="Script" uid="uid://dxm5wssn4jcsb" path="res://resources/custom/page_generation_settings/page_generation_settings.gd" id="6_idani"]
+
+[sub_resource type="Resource" id="Resource_ks4bd"]
+script = ExtResource("6_idani")
+metadata/_custom_type_script = "uid://dxm5wssn4jcsb"
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_61opr"]
 shader = ExtResource("4_weaco")
@@ -24,7 +31,6 @@ process_mode = 1
 [node name="Camera3D" type="Camera3D" parent="Game" unique_id=1598649772]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
 top_level = true
-fov = 90.0
 
 [node name="PhantomCameraHost" type="Node" parent="Game/Camera3D" unique_id=924364487]
 process_priority = 300
@@ -32,6 +38,11 @@ process_physics_priority = 300
 script = ExtResource("3_a8nhc")
 interpolation_mode = 1
 metadata/_custom_type_script = "uid://bd046eokvcnu2"
+
+[node name="PageGeneration" type="Node" parent="Game" unique_id=1010026956]
+script = ExtResource("4_61opr")
+settings = SubResource("Resource_ks4bd")
+metadata/_custom_type_script = "uid://qexl1lhkw2b6"
 
 [node name="ScreenColorCanvas" type="CanvasLayer" parent="." unique_id=1487558653]
 layer = 10

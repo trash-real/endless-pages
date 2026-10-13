@@ -10,13 +10,13 @@ extends CanvasLayer
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
+	PageManager.instance.page_taken.connect(_on_page_taken)
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
+func _update_count() -> void:
+	_page_count_text_old.text = str(PageManager.instance.get_total_collected() - 1)
+	_page_count_text_new.text = str(PageManager.instance.get_total_collected())
 
 
-func display_collection_text() -> void:
-	pass
+func _on_page_taken(_page: Page) -> void:
+	_update_count()

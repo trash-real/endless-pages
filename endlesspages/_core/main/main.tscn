@@ -40,7 +40,7 @@ script = ExtResource("3_a8nhc")
 interpolation_mode = 1
 metadata/_custom_type_script = "uid://bd046eokvcnu2"
 
-[node name="PageGeneration" type="Node" parent="Game" unique_id=1010026956]
+[node name="PageManager" type="Node" parent="Game" unique_id=1010026956]
 script = ExtResource("4_61opr")
 settings = SubResource("Resource_ks4bd")
 metadata/_custom_type_script = "uid://qexl1lhkw2b6"

@@ -39,6 +39,18 @@ time = 0.33
 trans = 10
 metadata/_custom_type_script = "uid://dqiid0ps7nvv6"
 
+[sub_resource type="Resource" id="Resource_ks4bd"]
+script = ExtResource("11_yrsia")
+ease = 2
+trans = 10
+metadata/_custom_type_script = "uid://dqiid0ps7nvv6"
+
+[sub_resource type="Resource" id="Resource_idani"]
+script = ExtResource("11_yrsia")
+time = 0.33
+trans = 10
+metadata/_custom_type_script = "uid://dqiid0ps7nvv6"
+
 [sub_resource type="Resource" id="Resource_56pq6"]
 script = ExtResource("11_yrsia")
 time = 0.33
@@ -129,8 +141,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
 script = ExtResource("11_bgc8q")
 _camera_follow_lerp_speed = 50.0
 _start_run_settings = SubResource("Resource_ts7x6")
-_stop_run_settings = SubResource("Resource_56pq6")
-_start_attract_settings = SubResource("Resource_ts7x6")
+_stop_run_settings = SubResource("Resource_ks4bd")
+_start_attract_settings = SubResource("Resource_idani")
 _stop_attract_settings = SubResource("Resource_56pq6")
 _flashlight_base = NodePath("..")
 _offset_node = NodePath("../RunOffset")

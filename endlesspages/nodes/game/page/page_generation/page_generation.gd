@@ -1,8 +1,8 @@
-class_name PageGeneration
+class_name PageManager
 extends Node
 ## Handles randomly generating pages in a map.
 
-static var instance: PageGeneration
+static var instance: PageManager
 
 signal page_taken(page: Page)
 
@@ -12,6 +12,7 @@ var _all_pages: Array[Page]
 var _pool: Array[Page]
 var _generated: Array[Page]
 
+var _total_collected: int = 0
 var _last_collected: Page
 var _pages_until_refresh: int = 0
 
@@ -19,6 +20,11 @@ var _pages_until_refresh: int = 0
 func _ready() -> void:
 	instance = self
 	setup() # Should call from Map when loaded
+
+
+func reset() -> void:
+	_last_collected = null
+	_total_collected = 0
 
 
 func setup() -> void:
@@ -71,7 +77,7 @@ func refresh_pool() -> void:
 		_pool.push_back(rand)
 		all.erase(rand)
 		if all.is_empty() and OS.is_debug_build():
-			push_warning("PageGeneration: List of all pages ran out before pool could fill.")
+			push_warning("PageManager: List of all pages ran out before pool could fill.")
 			return
 
 
@@ -90,13 +96,20 @@ func generate() -> void:
 		rand.taken.connect(_on_page_taken)
 		
 		if pool.is_empty() and OS.is_debug_build():
-			push_warning("PageGeneration: Page pool ran out before all pages generated.")
+			push_warning("PageManager: Page pool ran out before all pages generated.")
 			return
 
 
+func get_total_collected() -> int:
+	return _total_collected
+
+
 func _on_page_taken(page: Page) -> void:
+	_total_collected += 1
 	_last_collected = page
+	
 	page_taken.emit(page)
+	
 	_pages_until_refresh -= 1
 	if _pages_until_refresh <= 0:
 		refresh()

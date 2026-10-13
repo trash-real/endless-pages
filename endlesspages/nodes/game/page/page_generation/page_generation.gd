@@ -89,7 +89,6 @@ func generate() -> void:
 		rand.generate()
 		rand.taken.connect(_on_page_taken)
 		
-		print("Generate")
 		if pool.is_empty() and OS.is_debug_build():
 			push_warning("PageGeneration: Page pool ran out before all pages generated.")
 			return

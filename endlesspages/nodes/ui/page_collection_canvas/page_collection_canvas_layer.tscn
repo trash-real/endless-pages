@@ -17,6 +17,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 
 [node name="Mask" type="Panel" parent="Control" unique_id=274982952]
 clip_children = 1
@@ -33,6 +34,7 @@ offset_bottom = 25.0
 grow_horizontal = 2
 grow_vertical = 2
 pivot_offset_ratio = Vector2(0.5, 0.5)
+mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_yf5fn")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Control/Mask" unique_id=109416370]
@@ -65,7 +67,7 @@ vertical_alignment = 1
 layout_mode = 2
 size_flags_horizontal = 3
 offset_transform_enabled = true
-offset_transform_position = Vector2(0, -22.5)
+offset_transform_position = Vector2(0, -23)
 
 [node name="PageCountNew" type="RichTextLabel" parent="Control/Mask/HBoxContainer/VBoxContainer" unique_id=901510657]
 clip_contents = false
@@ -90,9 +92,7 @@ horizontal_alignment = 2
 vertical_alignment = 1
 
 [node name="Separator" type="RichTextLabel" parent="Control/Mask/HBoxContainer" unique_id=365969702]
-visible = false
 custom_minimum_size = Vector2(21, 50)
-custom_maximum_size = Vector2(21, 50)
 clip_contents = false
 layout_mode = 2
 size_flags_horizontal = 3
@@ -103,7 +103,6 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="RequiredPagesText" type="RichTextLabel" parent="Control/Mask/HBoxContainer" unique_id=2135881865]
-visible = false
 clip_contents = false
 layout_mode = 2
 size_flags_horizontal = 3

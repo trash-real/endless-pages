@@ -14,7 +14,7 @@ signal mouse_motion(relative: Vector2)
 
 
 #region Input
-func _unhandled_input(event: InputEvent) -> void:
+func _input(event: InputEvent) -> void:
 	if OS.is_debug_build():
 		_handle_debug_input(event)
 	

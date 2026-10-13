@@ -73,7 +73,7 @@ func _on_begin_moving() -> void:
 
 #region Signal Connections
 func _on_input_run_pressed() -> void:
-	if _player.velocity != Vector3.ZERO:
+	if _input.get_movement_direction() != Vector3.ZERO and _player.velocity != Vector3.ZERO:
 		_change_state(MovementState.RUNNING)
 
 

@@ -41,7 +41,7 @@ metadata/_custom_type_script = "uid://dqiid0ps7nvv6"
 
 [sub_resource type="Resource" id="Resource_56pq6"]
 script = ExtResource("11_yrsia")
-ease = 2
+time = 0.33
 trans = 10
 metadata/_custom_type_script = "uid://dqiid0ps7nvv6"
 

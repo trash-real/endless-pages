@@ -15,7 +15,7 @@ func init() -> void:
 	super()
 	
 	_input = _host.get_component(InputComponent)
-	
+
 	create_bind(_input.interact_pressed, _on_input_interact_pressed)
 
 
@@ -53,7 +53,11 @@ func _set_target(new: InteractibleComponent) -> void:
 		_target.set_targeted(false)
 		if _target.tree_exiting.is_connected(_on_target_exiting):
 			_target.tree_exiting.disconnect(_on_target_exiting)
-
+	
+	# Do not re set target if same
+	if new == _target:
+		return
+	
 	_target = new
 
 	if _target:

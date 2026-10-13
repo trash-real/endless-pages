@@ -41,6 +41,7 @@ offset_right = 312.5
 grow_horizontal = 2
 grow_vertical = 0
 offset_transform_enabled = true
+mouse_filter = 2
 bbcode_enabled = true
 text = "TAKE PAGE
 [LCLICK]"

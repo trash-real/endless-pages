@@ -1,14 +1,43 @@
 [gd_scene format=3 uid="uid://c75lrvjg4mlu7"]
 
 [ext_resource type="Script" uid="uid://c0wq7t7vdg1d7" path="res://nodes/game/page/hud/page_collection_canvas_layer/page_collection_canvas_layer.gd" id="1_tvrn2"]
+[ext_resource type="Script" uid="uid://btmpboe2cytth" path="res://nodes/ui/ui_anim_fade_up/ui_anim_fade_up.gd" id="2_dlja5"]
+[ext_resource type="Script" uid="uid://dqiid0ps7nvv6" path="res://resources/custom/tween_settings/tween_settings.gd" id="3_ee1f3"]
+
+[sub_resource type="Resource" id="Resource_ee1f3"]
+script = ExtResource("3_ee1f3")
+time = 1.0
+ease = 2
+metadata/_custom_type_script = "uid://dqiid0ps7nvv6"
+
+[sub_resource type="Resource" id="Resource_3dwfy"]
+script = ExtResource("3_ee1f3")
+time = 1.0
+trans = 9
+metadata/_custom_type_script = "uid://dqiid0ps7nvv6"
+
+[sub_resource type="Resource" id="Resource_eo700"]
+script = ExtResource("3_ee1f3")
+time = 1.0
+ease = 2
+trans = 10
+metadata/_custom_type_script = "uid://dqiid0ps7nvv6"
+
+[sub_resource type="Resource" id="Resource_o3frb"]
+script = ExtResource("3_ee1f3")
+time = 0.67
+metadata/_custom_type_script = "uid://dqiid0ps7nvv6"
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yf5fn"]
 bg_color = Color(1, 1, 1, 1)
 
-[node name="PageCollectionCanvasLayer" type="CanvasLayer" unique_id=135339754 node_paths=PackedStringArray("_page_count_text_old", "_page_count_text_new")]
+[node name="PageCollectionCanvasLayer" type="CanvasLayer" unique_id=135339754 node_paths=PackedStringArray("_page_count_container", "_page_count_text_old", "_page_count_text_new", "_fade_up_anim")]
 script = ExtResource("1_tvrn2")
-_page_count_text_old = NodePath("Control/Mask/HBoxContainer/VBoxContainer/PageCountOld")
-_page_count_text_new = NodePath("Control/Mask/HBoxContainer/VBoxContainer/PageCountNew")
+_number_tween_settings_list = Array[ExtResource("3_ee1f3")]([SubResource("Resource_ee1f3"), SubResource("Resource_3dwfy"), SubResource("Resource_eo700")])
+_page_count_container = NodePath("Control/FadeUp/Mask/HBoxContainer/VBoxContainer")
+_page_count_text_old = NodePath("Control/FadeUp/Mask/HBoxContainer/VBoxContainer/PageCountOld")
+_page_count_text_new = NodePath("Control/FadeUp/Mask/HBoxContainer/VBoxContainer/PageCountNew")
+_fade_up_anim = NodePath("Control/FadeUp")
 
 [node name="Control" type="Control" parent="." unique_id=702897249]
 layout_mode = 3
@@ -19,7 +48,21 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="Mask" type="Panel" parent="Control" unique_id=274982952]
+[node name="FadeUp" type="Control" parent="Control" unique_id=2129958449]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+offset_transform_enabled = true
+script = ExtResource("2_dlja5")
+_start_position = Vector2(0, 50)
+_tween_settings = SubResource("Resource_o3frb")
+
+[node name="Mask" type="Panel" parent="Control/FadeUp" unique_id=274982952]
 clip_children = 1
 layout_mode = 1
 anchors_preset = 8
@@ -37,7 +80,7 @@ pivot_offset_ratio = Vector2(0.5, 0.5)
 mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_yf5fn")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Control/Mask" unique_id=109416370]
+[node name="HBoxContainer" type="HBoxContainer" parent="Control/FadeUp/Mask" unique_id=109416370]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -53,7 +96,7 @@ grow_vertical = 2
 pivot_offset_ratio = Vector2(0.5, 0.5)
 alignment = 1
 
-[node name="RichTextLabel" type="RichTextLabel" parent="Control/Mask/HBoxContainer" unique_id=1241562067]
+[node name="RichTextLabel" type="RichTextLabel" parent="Control/FadeUp/Mask/HBoxContainer" unique_id=1241562067]
 custom_minimum_size = Vector2(132, 50)
 custom_maximum_size = Vector2(132, 50)
 layout_mode = 2
@@ -63,13 +106,13 @@ text = "Pages: "
 scroll_active = false
 vertical_alignment = 1
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Control/Mask/HBoxContainer" unique_id=920337810]
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/FadeUp/Mask/HBoxContainer" unique_id=920337810]
 layout_mode = 2
 size_flags_horizontal = 3
 offset_transform_enabled = true
-offset_transform_position = Vector2(0, -23)
+offset_transform_position = Vector2(0, 22.5)
 
-[node name="PageCountNew" type="RichTextLabel" parent="Control/Mask/HBoxContainer/VBoxContainer" unique_id=901510657]
+[node name="PageCountNew" type="RichTextLabel" parent="Control/FadeUp/Mask/HBoxContainer/VBoxContainer" unique_id=901510657]
 clip_contents = false
 layout_mode = 2
 size_flags_horizontal = 3
@@ -80,7 +123,7 @@ autowrap_mode = 0
 horizontal_alignment = 2
 vertical_alignment = 1
 
-[node name="PageCountOld" type="RichTextLabel" parent="Control/Mask/HBoxContainer/VBoxContainer" unique_id=1409413697]
+[node name="PageCountOld" type="RichTextLabel" parent="Control/FadeUp/Mask/HBoxContainer/VBoxContainer" unique_id=1409413697]
 clip_contents = false
 layout_mode = 2
 size_flags_horizontal = 3
@@ -91,7 +134,7 @@ autowrap_mode = 0
 horizontal_alignment = 2
 vertical_alignment = 1
 
-[node name="Separator" type="RichTextLabel" parent="Control/Mask/HBoxContainer" unique_id=365969702]
+[node name="Separator" type="RichTextLabel" parent="Control/FadeUp/Mask/HBoxContainer" unique_id=365969702]
 custom_minimum_size = Vector2(21, 50)
 clip_contents = false
 layout_mode = 2
@@ -102,11 +145,11 @@ scroll_active = false
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="RequiredPagesText" type="RichTextLabel" parent="Control/Mask/HBoxContainer" unique_id=2135881865]
+[node name="RequiredPagesText" type="RichTextLabel" parent="Control/FadeUp/Mask/HBoxContainer" unique_id=2135881865]
 clip_contents = false
 layout_mode = 2
 size_flags_horizontal = 3
-text = "1"
+text = "0"
 fit_content = true
 scroll_active = false
 autowrap_mode = 0

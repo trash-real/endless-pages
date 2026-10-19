@@ -42,6 +42,9 @@ func _handle_key_input(event: InputEventKey) -> void:
 		light_pressed.emit()
 	elif event.is_action_pressed("player_toggle_light"):
 		light_released.emit()
+	
+	if Input.is_key_pressed(KEY_ESCAPE):
+		get_tree().quit()
 
 
 func _handle_mouse_button_input(event: InputEventMouseButton) -> void:

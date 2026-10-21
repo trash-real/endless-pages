@@ -10,6 +10,8 @@ extends Component
 
 ## Move states which this component is active during. Empty means always active.
 @export var active_move_states: Array[PlayerMovement.MovementState]
+
+@export var active_light_states: Array[PlayerFlashlightController.LightState]
  
 var _player: Player
  
@@ -22,7 +24,10 @@ func init() -> void:
 func _is_active() -> bool:
 	if not super():
 		return false
-	# There are specified active move states and the current state is not in it.
+	# There are specified move states and the current state is not in it.
 	if not active_move_states.is_empty() and not _player.movement_state.get_state() in active_move_states:
+		return false
+	# There are specified light states and the current state is not in it.
+	if not active_light_states.is_empty() and not _player.light_state.get_state() in active_light_states:
 		return false
 	return not Constraints.has_any(blocked_by)

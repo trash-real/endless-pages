@@ -40,7 +40,7 @@ func _handle_key_input(event: InputEventKey) -> void:
 	
 	if event.is_action_pressed("player_toggle_light"):
 		light_pressed.emit()
-	elif event.is_action_pressed("player_toggle_light"):
+	elif event.is_action_released("player_toggle_light"):
 		light_released.emit()
 	
 	if Input.is_key_pressed(KEY_ESCAPE):

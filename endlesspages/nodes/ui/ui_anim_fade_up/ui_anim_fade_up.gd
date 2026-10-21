@@ -1,4 +1,4 @@
-class_name UIFadeUpAnimation
+class_name UIFadeUpAnimator
 extends Control
 
 @export_group("Start")

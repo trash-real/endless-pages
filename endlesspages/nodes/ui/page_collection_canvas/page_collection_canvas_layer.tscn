@@ -107,6 +107,7 @@ scroll_active = false
 vertical_alignment = 1
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Control/FadeUp/Mask/HBoxContainer" unique_id=920337810]
+custom_minimum_size = Vector2(27, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 offset_transform_enabled = true
@@ -146,6 +147,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="RequiredPagesText" type="RichTextLabel" parent="Control/FadeUp/Mask/HBoxContainer" unique_id=2135881865]
+custom_minimum_size = Vector2(27, 0)
 clip_contents = false
 layout_mode = 2
 size_flags_horizontal = 3

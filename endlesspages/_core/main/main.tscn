@@ -22,32 +22,32 @@ shader_parameter/shade_3 = Color(0.003921569, 0.11372549, 0.20784314, 1)
 
 [node name="Main" type="Node" unique_id=1822949558]
 
-[node name="Game" type="Node3D" parent="." unique_id=48079991]
+[node name="Level" type="Node3D" parent="." unique_id=48079991]
 process_mode = 1
 
-[node name="MapTest1" parent="Game" unique_id=1918921851 instance=ExtResource("1_cv2pg")]
+[node name="MapTest1" parent="Level" unique_id=1918921851 instance=ExtResource("1_cv2pg")]
 
-[node name="Player" parent="Game/MapTest1" unique_id=777005718 instance=ExtResource("2_a8nhc")]
+[node name="Player" parent="Level/MapTest1" unique_id=777005718 instance=ExtResource("2_a8nhc")]
 
-[node name="Camera3D" type="Camera3D" parent="Game" unique_id=1598649772]
+[node name="Camera3D" type="Camera3D" parent="." unique_id=1598649772]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
 top_level = true
 
-[node name="PhantomCameraHost" type="Node" parent="Game/Camera3D" unique_id=924364487]
+[node name="PhantomCameraHost" type="Node" parent="Camera3D" unique_id=924364487]
 process_priority = 300
 process_physics_priority = 300
 script = ExtResource("3_a8nhc")
 interpolation_mode = 1
 metadata/_custom_type_script = "uid://bd046eokvcnu2"
 
-[node name="PageManager" type="Node" parent="Game" unique_id=1010026956]
+[node name="PageManager" type="Node" parent="." unique_id=1010026956]
 script = ExtResource("4_61opr")
 settings = SubResource("Resource_ks4bd")
 metadata/_custom_type_script = "uid://qexl1lhkw2b6"
 
-[node name="GameUI" type="Node" parent="Game" unique_id=158187144]
+[node name="GameUI" type="Node" parent="." unique_id=158187144]
 
-[node name="PageCollectionCanvasLayer" parent="Game/GameUI" unique_id=135339754 instance=ExtResource("7_idani")]
+[node name="PageCollectionCanvasLayer" parent="GameUI" unique_id=135339754 instance=ExtResource("7_idani")]
 
 [node name="ScreenColorCanvas" type="CanvasLayer" parent="." unique_id=1487558653]
 layer = 10

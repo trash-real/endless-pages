@@ -14,6 +14,7 @@
 [ext_resource type="Script" uid="uid://5g6ow70c13o" path="res://nodes/game/player/player_components/camera/player_camera_rotation.gd" id="8_ko323"]
 [ext_resource type="Script" uid="uid://dfmkrc7st8wck" path="res://nodes/game/player/player_components/flashlight/player_flashlight_rotation.gd" id="11_bgc8q"]
 [ext_resource type="Script" uid="uid://dqiid0ps7nvv6" path="res://resources/custom/tween_settings/tween_settings.gd" id="11_yrsia"]
+[ext_resource type="Script" uid="uid://coirckn1okv01" path="res://nodes/game/player/player_components/flashlight/player_flashlight_controller.gd" id="12_wly6e"]
 [ext_resource type="Script" uid="uid://cuo66dwxqn8u4" path="res://nodes/game/player/player_components/flashlight/player_flashlight_attract.gd" id="15_s6ych"]
 [ext_resource type="PackedScene" uid="uid://cvc427ax3okvl" path="res://nodes/game/player/hud/interact_canvas_layer/interact_canvas_layer.tscn" id="16_tkag7"]
 
@@ -137,6 +138,11 @@ collide_with_areas = true
 editor_description = "Gets rotated by PlayerFlashlightRotation. Always rotates to follow camera."
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
 
+[node name="PlayerFlashlightController" type="Node" parent="FlashlightBase" unique_id=534893632 node_paths=PackedStringArray("_light")]
+script = ExtResource("12_wly6e")
+_light = NodePath("../RunOffset/Attraction/SpotLight3D")
+metadata/_custom_type_script = "uid://coirckn1okv01"
+
 [node name="PlayerFlashlightRotation" type="Node" parent="FlashlightBase" unique_id=1150490959 node_paths=PackedStringArray("_flashlight_base", "_offset_node", "_attract_node", "_camera")]
 script = ExtResource("11_bgc8q")
 _camera_follow_lerp_speed = 50.0
@@ -164,6 +170,10 @@ editor_description = "Handles rotating toward whatever the light is attracted to
 [node name="SpotLight3D" type="SpotLight3D" parent="FlashlightBase/RunOffset/Attraction" unique_id=1364317176]
 light_energy = 10.0
 spot_range = 50.0
+
+[node name="AmbientLight" type="OmniLight3D" parent="." unique_id=407556831]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+light_energy = 2.0
 
 [node name="PlayerInteraction" type="Node" parent="." unique_id=882021103 node_paths=PackedStringArray("interact_cast")]
 script = ExtResource("7_3qea4")

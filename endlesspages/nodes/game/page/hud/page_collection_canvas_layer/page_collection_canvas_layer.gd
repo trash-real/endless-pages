@@ -7,12 +7,12 @@ extends CanvasLayer
 @export var _page_count_container: BoxContainer
 @export var _page_count_text_old: RichTextLabel
 @export var _page_count_text_new: RichTextLabel
-@export var _fade_up_anim: UIFadeUpAnimation
+@export var _fade_up_anim: UIFadeUpAnimator
 
 var _count_tween: Tween
 var _newest_page: Page
 
-const COUNT_START_POS: Vector2 = Vector2(0.0, -22.0)
+const COUNT_START_POS: Vector2 = Vector2(0.0, -23.0)
 const COUNT_END_POS: Vector2 = Vector2(0.0, 22.0)
 const FADE_OUT_BUFFER: float = 0.5
 

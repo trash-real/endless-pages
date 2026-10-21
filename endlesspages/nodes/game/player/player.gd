@@ -10,6 +10,7 @@ extends CharacterBody3D
 @export var stats: PlayerStats
 
 var movement_state: StateMachine = StateMachine.new(PlayerMovement.MovementState.STILL)
+var light_state: StateMachine = StateMachine.new(PlayerFlashlightController.LightState.OFF)
 
 @onready var components: ComponentHost = ComponentHost.new(self)
 
@@ -20,7 +21,7 @@ func _ready() -> void:
 	Constraints.changed.connect(components.refresh_all)
 	movement_state.changed.connect(func(_a, _b): components.refresh_all())
 	
-	components.start()
+	enable()
 
 
 func _process(delta: float) -> void:
@@ -32,3 +33,11 @@ func _physics_process(delta: float) -> void:
 	
 	if components.running:
 		move_and_slide()
+
+
+func enable() -> void:
+	components.start()
+
+
+func disable() -> void:
+	components.stop()

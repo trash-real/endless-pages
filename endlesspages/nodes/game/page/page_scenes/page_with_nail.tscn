@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://ciqtumup17lng"]
+
+[ext_resource type="PackedScene" uid="uid://lbjkvh3j8pkt" path="res://nodes/game/page/page_scenes/page.tscn" id="1_d18lb"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yf5fn"]
+albedo_color = Color(0.2520276, 0.25202766, 0.25202763, 1)
+
+[node name="PageWithNail" type="Node3D" unique_id=1218609770]
+
+[node name="Page" parent="." unique_id=1611791717 instance=ExtResource("1_d18lb")]
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="." unique_id=766526348]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0.2685858, 0.01250124)
+radius = 0.025
+height = 0.025
+material = SubResource("StandardMaterial3D_yf5fn")
+
+[node name="CSGCylinder3D2" type="CSGCylinder3D" parent="." unique_id=1295463109]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0.2685858, -0.010428429)
+radius = 0.008300781
+height = 0.025
+material = SubResource("StandardMaterial3D_yf5fn")

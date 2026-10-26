@@ -4,7 +4,14 @@
 [ext_resource type="Script" uid="uid://d4l8dgpw3uqe6" path="res://nodes/game/components/interactible_component.gd" id="1_i5mwk"]
 [ext_resource type="Script" uid="uid://c0oky3gy0l1n1" path="res://nodes/game/components/flashlight_attractor_component.gd" id="2_gimor"]
 
-[sub_resource type="QuadMesh" id="QuadMesh_g4v7s"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gimor"]
+cull_mode = 2
+specular_mode = 2
+albedo_color = Color(0.7539839, 0.75398386, 0.75398386, 1)
+metallic_specular = 0.0
+
+[sub_resource type="QuadMesh" id="QuadMesh_yf5fn"]
+material = SubResource("StandardMaterial3D_gimor")
 size = Vector2(0.4, 0.6)
 
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_i5mwk"]
@@ -15,7 +22,7 @@ script = ExtResource("1_gimor")
 _interactible = NodePath("InteractibleComponent")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1846484942]
-mesh = SubResource("QuadMesh_g4v7s")
+mesh = SubResource("QuadMesh_yf5fn")
 
 [node name="InteractibleComponent" type="Node3D" parent="." unique_id=210612147]
 script = ExtResource("1_i5mwk")

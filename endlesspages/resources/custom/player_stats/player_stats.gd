@@ -16,7 +16,7 @@ extends Resource
 @export_group("Flashlight", "light_")
 ## Determines SpotLight3D's range value.[br]
 ## Should also increase range at which monsters are repelled by the light.
-@export var light_range: float = 50.0
+@export var light_range: float = 20.0
 ## Determines SpotLight3D's energy value.[br]
 ## Could affect light sensitive characters, repelling them faster.
 @export var light_power: float = 10.0

@@ -38,10 +38,10 @@ bg_color = Color(1, 1, 1, 1)
 [node name="PageCollectionCanvasLayer" type="CanvasLayer" unique_id=135339754 node_paths=PackedStringArray("_page_count_container", "_page_count_text_old", "_page_count_text_new", "_fade_up_anim")]
 script = ExtResource("1_tvrn2")
 _number_tween_settings_list = Array[ExtResource("3_ee1f3")]([SubResource("Resource_ee1f3"), SubResource("Resource_3dwfy"), SubResource("Resource_eo700")])
-_page_count_container = NodePath("Control/FadeUp/Mask/HBoxContainer/VBoxContainer")
-_page_count_text_old = NodePath("Control/FadeUp/Mask/HBoxContainer/VBoxContainer/PageCountOld")
-_page_count_text_new = NodePath("Control/FadeUp/Mask/HBoxContainer/VBoxContainer/PageCountNew")
-_fade_up_anim = NodePath("Control/FadeUp")
+_page_count_container = NodePath("Control/UIFadeUpAnimator/Mask/HBoxContainer/VBoxContainer")
+_page_count_text_old = NodePath("Control/UIFadeUpAnimator/Mask/HBoxContainer/VBoxContainer/PageCountOld")
+_page_count_text_new = NodePath("Control/UIFadeUpAnimator/Mask/HBoxContainer/VBoxContainer/PageCountNew")
+_fade_up_anim = NodePath("Control/UIFadeUpAnimator")
 
 [node name="Control" type="Control" parent="." unique_id=702897249]
 layout_mode = 3
@@ -52,7 +52,7 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="FadeUp" type="Control" parent="Control" unique_id=2129958449]
+[node name="UIFadeUpAnimator" type="Control" parent="Control" unique_id=1958139620]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -61,15 +61,15 @@ anchor_right = 0.5
 anchor_bottom = 0.5
 grow_horizontal = 2
 grow_vertical = 2
-offset_transform_enabled = true
 script = ExtResource("2_dlja5")
 _start_position = Vector2(0, 100)
-_start_scale = Vector2(0, 0)
+_start_scale = Vector2(0.5, 0.5)
 _start_color = Color(0, 0, 0, 0)
 _fade_in_tween_settings = SubResource("Resource_g2njq")
 _fade_out_tween_settings = SubResource("Resource_73314")
+metadata/_custom_type_script = "uid://btmpboe2cytth"
 
-[node name="Mask" type="Panel" parent="Control/FadeUp" unique_id=274982952]
+[node name="Mask" type="Panel" parent="Control/UIFadeUpAnimator" unique_id=274982952]
 clip_children = 1
 layout_mode = 1
 anchors_preset = 8
@@ -87,7 +87,7 @@ pivot_offset_ratio = Vector2(0.5, 0.5)
 mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_yf5fn")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Control/FadeUp/Mask" unique_id=109416370]
+[node name="HBoxContainer" type="HBoxContainer" parent="Control/UIFadeUpAnimator/Mask" unique_id=109416370]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -103,7 +103,7 @@ grow_vertical = 2
 pivot_offset_ratio = Vector2(0.5, 0.5)
 alignment = 1
 
-[node name="RichTextLabel" type="RichTextLabel" parent="Control/FadeUp/Mask/HBoxContainer" unique_id=1241562067]
+[node name="RichTextLabel" type="RichTextLabel" parent="Control/UIFadeUpAnimator/Mask/HBoxContainer" unique_id=1241562067]
 custom_minimum_size = Vector2(132, 50)
 custom_maximum_size = Vector2(132, 50)
 layout_mode = 2
@@ -113,14 +113,14 @@ text = "Pages: "
 scroll_active = false
 vertical_alignment = 1
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Control/FadeUp/Mask/HBoxContainer" unique_id=920337810]
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/UIFadeUpAnimator/Mask/HBoxContainer" unique_id=920337810]
 custom_minimum_size = Vector2(27, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 offset_transform_enabled = true
 offset_transform_position = Vector2(0, 22.5)
 
-[node name="PageCountNew" type="RichTextLabel" parent="Control/FadeUp/Mask/HBoxContainer/VBoxContainer" unique_id=901510657]
+[node name="PageCountNew" type="RichTextLabel" parent="Control/UIFadeUpAnimator/Mask/HBoxContainer/VBoxContainer" unique_id=901510657]
 clip_contents = false
 layout_mode = 2
 size_flags_horizontal = 3
@@ -131,7 +131,7 @@ autowrap_mode = 0
 horizontal_alignment = 2
 vertical_alignment = 1
 
-[node name="PageCountOld" type="RichTextLabel" parent="Control/FadeUp/Mask/HBoxContainer/VBoxContainer" unique_id=1409413697]
+[node name="PageCountOld" type="RichTextLabel" parent="Control/UIFadeUpAnimator/Mask/HBoxContainer/VBoxContainer" unique_id=1409413697]
 clip_contents = false
 layout_mode = 2
 size_flags_horizontal = 3
@@ -142,7 +142,7 @@ autowrap_mode = 0
 horizontal_alignment = 2
 vertical_alignment = 1
 
-[node name="Separator" type="RichTextLabel" parent="Control/FadeUp/Mask/HBoxContainer" unique_id=365969702]
+[node name="Separator" type="RichTextLabel" parent="Control/UIFadeUpAnimator/Mask/HBoxContainer" unique_id=365969702]
 custom_minimum_size = Vector2(21, 50)
 clip_contents = false
 layout_mode = 2
@@ -153,12 +153,12 @@ scroll_active = false
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="RequiredPagesText" type="RichTextLabel" parent="Control/FadeUp/Mask/HBoxContainer" unique_id=2135881865]
+[node name="RequiredPagesText" type="RichTextLabel" parent="Control/UIFadeUpAnimator/Mask/HBoxContainer" unique_id=2135881865]
 custom_minimum_size = Vector2(27, 0)
 clip_contents = false
 layout_mode = 2
 size_flags_horizontal = 3
-text = "0"
+text = "8"
 fit_content = true
 scroll_active = false
 autowrap_mode = 0

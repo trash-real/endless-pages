@@ -17,6 +17,7 @@ metadata/_custom_type_script = "uid://dqiid0ps7nvv6"
 
 [resource]
 script = ExtResource("1_fcben")
+light_power = 6.0
 light_start_run_tween = SubResource("Resource_fcben")
 light_stop_run_tween = SubResource("Resource_terie")
 metadata/_custom_type_script = "uid://ck7f5tmllyti7"

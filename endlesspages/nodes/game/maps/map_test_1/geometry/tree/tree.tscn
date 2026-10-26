@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://c3nnpr8ncdyye"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_d2ef7"]
+albedo_color = Color(0.3779188, 0.3779189, 0.37791875, 1)
+
+[node name="Tree" type="Node3D" unique_id=161248541]
+
+[node name="Mesh" type="CSGCombiner3D" parent="." unique_id=1796939800]
+autosmooth = true
+use_collision = true
+
+[node name="Tree" type="CSGCylinder3D" parent="Mesh" unique_id=611257302]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.75, 0)
+use_collision = true
+collision_mask = 0
+height = 5.5
+material = SubResource("StandardMaterial3D_d2ef7")
+
+[node name="Leaves" type="CSGSphere3D" parent="Mesh" unique_id=2047257181]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.5, 0)
+radius = 2.0
+material = SubResource("StandardMaterial3D_d2ef7")

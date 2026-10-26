@@ -5,13 +5,8 @@
 [ext_resource type="Script" uid="uid://bd046eokvcnu2" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="3_a8nhc"]
 [ext_resource type="Script" uid="uid://qexl1lhkw2b6" path="res://nodes/game/page/page_generation/page_generation.gd" id="4_61opr"]
 [ext_resource type="Shader" uid="uid://ddfqdbve8eskp" path="res://assets/shaders/fourcolors_screen.gdshader" id="4_weaco"]
-[ext_resource type="Script" uid="uid://dlxoff02y80r3" path="res://resources/custom/page_data/page_data.gd" id="5_w7epw"]
-[ext_resource type="Script" uid="uid://dxm5wssn4jcsb" path="res://resources/custom/page_generation_settings/page_generation_settings.gd" id="6_idani"]
+[ext_resource type="Resource" uid="uid://hvtfuifw0w1k" path="res://resources/custom/page_generation_settings/default_page_generation_settings.tres" id="5_w7epw"]
 [ext_resource type="PackedScene" uid="uid://c75lrvjg4mlu7" path="res://nodes/ui/page_collection_canvas/page_collection_canvas_layer.tscn" id="7_idani"]
-
-[sub_resource type="Resource" id="Resource_ks4bd"]
-script = ExtResource("6_idani")
-metadata/_custom_type_script = "uid://dxm5wssn4jcsb"
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_61opr"]
 shader = ExtResource("4_weaco")
@@ -42,7 +37,7 @@ metadata/_custom_type_script = "uid://bd046eokvcnu2"
 
 [node name="PageManager" type="Node" parent="." unique_id=1010026956]
 script = ExtResource("4_61opr")
-settings = SubResource("Resource_ks4bd")
+settings = ExtResource("5_w7epw")
 metadata/_custom_type_script = "uid://qexl1lhkw2b6"
 
 [node name="GameUI" type="Node" parent="." unique_id=158187144]

@@ -11,6 +11,7 @@ extends Component
 ## Move states which this component is active during. Empty means always active.
 @export var active_move_states: Array[PlayerMovement.MovementState]
 
+## Light states which this component is active during. Empty means always active.
 @export var active_light_states: Array[PlayerFlashlightController.LightState]
  
 var _player: Player

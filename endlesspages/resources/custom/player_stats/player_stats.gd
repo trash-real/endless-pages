@@ -28,6 +28,12 @@ extends Resource
 ## Determines the animation that plays when stopping running.
 @export var light_stop_run_tween: TweenSettings
 
+@export_group("Ambient Light", "amblight_")
+## Determines AmbientLight's range value.
+@export var amblight_range: float = 5.0
+## Determines AmbientLight's energy value.
+@export var amblight_power: float = 2.0
+
 @export_group("Radar", "radar_")
 ## 1.0 battery = 1 second.
 @export var radar_start_battery: float = 40.0

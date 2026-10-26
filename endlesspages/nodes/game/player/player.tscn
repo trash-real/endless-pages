@@ -16,7 +16,9 @@
 [ext_resource type="Script" uid="uid://dqiid0ps7nvv6" path="res://resources/custom/tween_settings/tween_settings.gd" id="11_yrsia"]
 [ext_resource type="Script" uid="uid://coirckn1okv01" path="res://nodes/game/player/player_components/flashlight/player_flashlight_controller.gd" id="12_wly6e"]
 [ext_resource type="Script" uid="uid://cuo66dwxqn8u4" path="res://nodes/game/player/player_components/flashlight/player_flashlight_attract.gd" id="15_s6ych"]
+[ext_resource type="Script" uid="uid://dy1ivh0rwb500" path="res://nodes/game/player/player_components/flashlight/player_flashlight_spotlight.gd" id="16_bq84y"]
 [ext_resource type="PackedScene" uid="uid://cvc427ax3okvl" path="res://nodes/game/player/hud/interact_canvas_layer/interact_canvas_layer.tscn" id="16_tkag7"]
+[ext_resource type="Script" uid="uid://3xyp0oc332ac" path="res://player_ambient_light.gd" id="17_m7uoa"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_g4v7s"]
 
@@ -94,6 +96,7 @@ _sensitivity = 0.002
 _camera_y = NodePath("../CameraYaw")
 _camera_x = NodePath("../CameraYaw/CameraPitch")
 _camera = NodePath("../CameraYaw/CameraPitch/CameraBobber/CameraTilt/PlayerCamera")
+blocked_by = Array[int]([0, 5])
 metadata/_custom_type_script = "uid://5g6ow70c13o"
 
 [node name="PlayerCameraBob" type="Node" parent="CameraBase" unique_id=133536690 node_paths=PackedStringArray("_target")]
@@ -138,9 +141,9 @@ collide_with_areas = true
 editor_description = "Gets rotated by PlayerFlashlightRotation. Always rotates to follow camera."
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
 
-[node name="PlayerFlashlightController" type="Node" parent="FlashlightBase" unique_id=534893632 node_paths=PackedStringArray("_light")]
+[node name="PlayerFlashlightController" type="Node" parent="FlashlightBase" unique_id=534893632]
 script = ExtResource("12_wly6e")
-_light = NodePath("../RunOffset/Attraction/SpotLight3D")
+blocked_by = Array[int]([3])
 metadata/_custom_type_script = "uid://coirckn1okv01"
 
 [node name="PlayerFlashlightRotation" type="Node" parent="FlashlightBase" unique_id=1150490959 node_paths=PackedStringArray("_flashlight_base", "_offset_node", "_attract_node", "_camera")]
@@ -161,6 +164,12 @@ script = ExtResource("15_s6ych")
 active_move_states = Array[int]([0, 1])
 metadata/_custom_type_script = "uid://cuo66dwxqn8u4"
 
+[node name="PlayerFlashlightSpotLight" type="Node" parent="FlashlightBase" unique_id=2062500173 node_paths=PackedStringArray("_light")]
+script = ExtResource("16_bq84y")
+_light = NodePath("../RunOffset/Attraction/SpotLight3D")
+active_light_states = Array[int]([0])
+metadata/_custom_type_script = "uid://dy1ivh0rwb500"
+
 [node name="RunOffset" type="Node3D" parent="FlashlightBase" unique_id=12650867]
 editor_description = "All other rotations to flashlight apply here. (Running, Attracted, etc.)"
 
@@ -170,6 +179,12 @@ editor_description = "Handles rotating toward whatever the light is attracted to
 [node name="SpotLight3D" type="SpotLight3D" parent="FlashlightBase/RunOffset/Attraction" unique_id=1364317176]
 light_energy = 10.0
 spot_range = 50.0
+
+[node name="PlayerAmbientLight" type="Node" parent="." unique_id=1895451454 node_paths=PackedStringArray("_light")]
+script = ExtResource("17_m7uoa")
+_light = NodePath("../AmbientLight")
+active_light_states = Array[int]([1])
+metadata/_custom_type_script = "uid://3xyp0oc332ac"
 
 [node name="AmbientLight" type="OmniLight3D" parent="." unique_id=407556831]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)

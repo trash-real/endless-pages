@@ -1,14 +1,13 @@
 class_name PlayerFlashlightController
 extends PlayerComponent
-## Handles turning the flashlight on and off.
+## Handles all input related to controlling the flashlight.
+##
+## Communicates these changes to other components with the LightState state machine.
 
 enum LightState {
 	ON,
 	OFF,
 }
-
-@export_group("References")
-@export var _light: SpotLight3D
 
 var _input: InputComponent
 
@@ -20,26 +19,27 @@ func init() -> void:
 	
 	create_bind(_input.light_pressed, _on_input_light_pressed)
 	create_bind(_input.light_released, _on_input_light_released)
-	
-	_apply_stats()
 
 
 ## Player has pressed the flashlight's on/off button.
 func _light_pressed() -> void:
-	# Play press sound
 	pass
 
 
 ## Player has released the flashlight's on/off button.
 func _light_released() -> void:
-	# Play release sound
-	_light.visible = not _light.visible
+	_set_light_state(_get_toggled_light_state())
 
 
-func _apply_stats() -> void:
-	_light.spot_range = _player.stats.light_range
-	_light.spot_angle = _player.stats.light_angle
-	_light.light_energy = _player.stats.light_power
+func _set_light_state(new: LightState) -> void:
+	_player.light_state.request(new)
+
+
+func _get_toggled_light_state() -> LightState:
+	if _player.light_state.get_state() == LightState.OFF:
+		return LightState.ON
+	else:
+		return LightState.OFF
 
 
 func _on_input_light_pressed() -> void:

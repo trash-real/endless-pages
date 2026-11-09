@@ -49,14 +49,13 @@ func _find_target() -> InteractibleComponent:
 
 
 func _set_target(new: InteractibleComponent) -> void:
+	if new == _target:
+		return
+	
 	if is_instance_valid(_target):
 		_target.set_targeted(false)
 		if _target.tree_exiting.is_connected(_on_target_exiting):
 			_target.tree_exiting.disconnect(_on_target_exiting)
-	
-	# Do not re set target if same
-	if new == _target:
-		return
 	
 	_target = new
 

@@ -18,7 +18,7 @@
 [ext_resource type="Script" uid="uid://cuo66dwxqn8u4" path="res://nodes/game/player/player_components/flashlight/player_flashlight_attract.gd" id="15_s6ych"]
 [ext_resource type="Script" uid="uid://dy1ivh0rwb500" path="res://nodes/game/player/player_components/flashlight/player_flashlight_spotlight.gd" id="16_bq84y"]
 [ext_resource type="PackedScene" uid="uid://cvc427ax3okvl" path="res://nodes/game/player/hud/interact_canvas_layer/interact_canvas_layer.tscn" id="16_tkag7"]
-[ext_resource type="Script" uid="uid://3xyp0oc332ac" path="res://player_ambient_light.gd" id="17_m7uoa"]
+[ext_resource type="Script" uid="uid://3xyp0oc332ac" path="res://nodes/game/player/player_components/flashlight/player_ambient_light.gd" id="17_m7uoa"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_g4v7s"]
 
@@ -197,4 +197,5 @@ active_move_states = Array[int]([0, 1])
 metadata/_custom_type_script = "uid://bnebmfopig042"
 
 [node name="InteractCanvasLayer" parent="." unique_id=1660155778 node_paths=PackedStringArray("_interaction") instance=ExtResource("16_tkag7")]
+layer = 10
 _interaction = NodePath("../PlayerInteraction")

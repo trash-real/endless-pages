@@ -48,7 +48,7 @@ func tick(delta: float) -> void:
 	_apply_run_offset()
 	_apply_attract_offset()
 	
-	# Clamp X to not overshoot
+	# clamp X to not overshoot
 	_flashlight_base.global_rotation.x = deg_to_rad(clampf(_flashlight_base.global_rotation_degrees.x, ROTATION_BOUNDS_X.x, ROTATION_BOUNDS_X.y))
 
 
@@ -64,18 +64,11 @@ func _base_follow_camera(delta: float) -> void:
 
 
 func _apply_run_offset() -> void:
-	# Clamp base X first so the offset node blends from the clamped value
-	_flashlight_base.global_rotation.x = deg_to_rad(clampf(
-		_flashlight_base.global_rotation_degrees.x,
-		ROTATION_BOUNDS_X.x,
-		ROTATION_BOUNDS_X.y
-	))
-	
 	var base_x := _flashlight_base.global_rotation.x
 	var run_x := deg_to_rad(RUN_OFFSET_X)
 	
 	# weight 0 = follows base X, weight 1 = run offset X
-	_offset_node.global_rotation.x = lerpf(base_x, run_x, _run_weight)
+	_offset_node.rotation = Vector3(lerpf(0.0, base_x - run_x, _run_weight), 0.0, 0.0)
 
 
 func _apply_attract_offset() -> void:

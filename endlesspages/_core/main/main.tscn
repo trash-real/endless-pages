@@ -7,6 +7,8 @@
 [ext_resource type="Shader" uid="uid://ddfqdbve8eskp" path="res://assets/shaders/fourcolors_screen.gdshader" id="4_weaco"]
 [ext_resource type="Resource" uid="uid://hvtfuifw0w1k" path="res://resources/custom/page_generation_settings/default_page_generation_settings.tres" id="5_w7epw"]
 [ext_resource type="PackedScene" uid="uid://c75lrvjg4mlu7" path="res://nodes/ui/page_collection_canvas/page_collection_canvas_layer.tscn" id="7_idani"]
+[ext_resource type="Shader" uid="uid://jtd7iubqexkm" path="res://assets/shaders/scanlines.gdshader" id="8_ks4bd"]
+[ext_resource type="Shader" uid="uid://bw3qhc25iqfbg" path="res://assets/shaders/screen_pixelation.gdshader" id="9_0vnc0"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_61opr"]
 shader = ExtResource("4_weaco")
@@ -14,6 +16,21 @@ shader_parameter/shade_0 = Color(0.6627451, 0.8392157, 0.8980392, 1)
 shader_parameter/shade_1 = Color(0.27450982, 0.56078434, 0.6862745, 1)
 shader_parameter/shade_2 = Color(0.003921569, 0.22745098, 0.3882353, 1)
 shader_parameter/shade_3 = Color(0.003921569, 0.11372549, 0.20784314, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_idani"]
+shader = ExtResource("9_0vnc0")
+shader_parameter/pixel_size = 2.0000000475
+shader_parameter/palette_steps = 0
+shader_parameter/dither = false
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_w7epw"]
+shader = ExtResource("8_ks4bd")
+shader_parameter/line_density = 100.0
+shader_parameter/line_opacity = 0.1999999955296
+shader_parameter/line_thickness = 0.5000000074506
+shader_parameter/enable_flicker = false
+shader_parameter/flicker_speed = 5.0
+shader_parameter/flicker_intensity = 0.02
 
 [node name="Main" type="Node" unique_id=1822949558]
 
@@ -43,12 +60,39 @@ metadata/_custom_type_script = "uid://qexl1lhkw2b6"
 [node name="GameUI" type="Node" parent="." unique_id=158187144]
 
 [node name="PageCollectionCanvasLayer" parent="GameUI" unique_id=135339754 instance=ExtResource("7_idani")]
-
-[node name="ScreenColorCanvas" type="CanvasLayer" parent="." unique_id=1487558653]
 layer = 10
 
-[node name="ColorRect" type="ColorRect" parent="ScreenColorCanvas" unique_id=477819267]
+[node name="PostProcess" type="Node" parent="." unique_id=1970874161]
+
+[node name="ScreenColorCanvasLayer" type="CanvasLayer" parent="PostProcess" unique_id=1487558653]
+layer = 20
+
+[node name="ColorRect" type="ColorRect" parent="PostProcess/ScreenColorCanvasLayer" unique_id=477819267]
 material = SubResource("ShaderMaterial_61opr")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="ScreenPixelationCanvasLayer" type="CanvasLayer" parent="PostProcess" unique_id=21629552]
+layer = 5
+
+[node name="ColorRect" type="ColorRect" parent="PostProcess/ScreenPixelationCanvasLayer" unique_id=979681694]
+material = SubResource("ShaderMaterial_idani")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="ScreenScanlinesCanvasLayer" type="CanvasLayer" parent="PostProcess" unique_id=826504326]
+layer = 21
+
+[node name="ColorRect" type="ColorRect" parent="PostProcess/ScreenScanlinesCanvasLayer" unique_id=1816044698]
+material = SubResource("ShaderMaterial_w7epw")
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0

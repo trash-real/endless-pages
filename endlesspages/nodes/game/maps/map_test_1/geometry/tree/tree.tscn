@@ -14,9 +14,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.75, 0)
 use_collision = true
 collision_mask = 0
 height = 5.5
+sides = 12
 material = SubResource("StandardMaterial3D_d2ef7")
 
 [node name="Leaves" type="CSGSphere3D" parent="Mesh" unique_id=2047257181]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.5, 0)
 radius = 2.0
+radial_segments = 16
+rings = 9
 material = SubResource("StandardMaterial3D_d2ef7")

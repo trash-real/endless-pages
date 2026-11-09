@@ -1,0 +1,23 @@
+[gd_resource type="Environment" format=3 uid="uid://d02i6uvlds81t"]
+
+[ext_resource type="Shader" uid="uid://d0ewpbyfs4n0t" path="res://assets/shaders/sky_stars.gdshader" id="1_bgids"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7cywf"]
+shader = ExtResource("1_bgids")
+shader_parameter/vertical_sections = 21
+shader_parameter/star_size = 0.01
+shader_parameter/star_falloff = 4.0
+shader_parameter/margin = 0.05
+shader_parameter/rotation_axis = Vector3(1, 1, 0)
+shader_parameter/rotation_angle = 0.0
+shader_parameter/rotation_speed = 0.1
+shader_parameter/horizon_angle = 6.0
+shader_parameter/horizon_fade = 2.0
+
+[sub_resource type="Sky" id="Sky_7cywf"]
+sky_material = SubResource("ShaderMaterial_7cywf")
+
+[resource]
+background_mode = 2
+sky = SubResource("Sky_7cywf")
+ambient_light_source = 2

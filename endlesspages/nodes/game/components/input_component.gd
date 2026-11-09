@@ -4,58 +4,39 @@ extends Component
 ##
 ## Fires signals for player action triggers and has methods for getting state of other actions.
 
-signal run_pressed
-signal run_released
 signal light_pressed
 signal light_released
 signal interact_pressed
 signal interact_released
 signal mouse_motion(relative: Vector2)
 
+var _triggers: Dictionary[String, Array] = {
+	"player_toggle_light": [light_pressed, light_released],
+	"player_interact": [interact_pressed, interact_released],
+}
+
 
 #region Input
-func _input(event: InputEvent) -> void:
+func _unhandled_input(event: InputEvent) -> void:
 	if OS.is_debug_build():
 		_handle_debug_input(event)
+	
+	if event.is_action_pressed("ui_cancel"):
+		get_tree().quit()
 	
 	if not enabled:
 		return
 	
-	if event is InputEventKey:
-		_handle_key_input(event)
+	if event is InputEventMouseMotion:
+		if Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
+			mouse_motion.emit(event.relative)
 		return
-	elif event is InputEventMouseButton:
-		_handle_mouse_button_input(event)
-		return
-	elif event is InputEventMouseMotion:
-		_handle_mouse_motion_input(event)
-		return
-
-
-func _handle_key_input(event: InputEventKey) -> void:
-	if event.is_action_pressed("player_run"):
-		run_pressed.emit()
-	elif event.is_action_released("player_run"):
-		run_released.emit()
 	
-	if event.is_action_pressed("player_toggle_light"):
-		light_pressed.emit()
-	elif event.is_action_released("player_toggle_light"):
-		light_released.emit()
-	
-	if Input.is_key_pressed(KEY_ESCAPE):
-		get_tree().quit()
-
-
-func _handle_mouse_button_input(event: InputEventMouseButton) -> void:
-	if event.is_action_pressed("player_interact"):
-		interact_pressed.emit()
-	elif event.is_action_released("player_interact"):
-		interact_released.emit()
-
-
-func _handle_mouse_motion_input(event: InputEventMouseMotion) -> void:
-	mouse_motion.emit(event.relative)
+	for action: StringName in _triggers:
+		if event.is_action_pressed(action):
+			_triggers[action][0].emit()
+		elif event.is_action_released(action):
+			_triggers[action][1].emit()
 
 
 func _handle_debug_input(event: InputEvent) -> void:
@@ -69,7 +50,7 @@ func get_movement_direction() -> Vector3:
 	if not enabled:
 		return Vector3.ZERO
 	
-	var dir = Input.get_vector(
+	var dir := Input.get_vector(
 		"player_move_left", "player_move_right",
 		"player_move_backward", "player_move_forward"
 		)
@@ -78,7 +59,7 @@ func get_movement_direction() -> Vector3:
 
 
 func is_running() -> bool:
-	return Input.is_action_pressed("player_run")
+	return enabled and Input.is_action_pressed("player_run")
 #endregion
 
 

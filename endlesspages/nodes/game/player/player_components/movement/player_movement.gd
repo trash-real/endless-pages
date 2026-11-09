@@ -11,41 +11,36 @@ func init() -> void:
 	super.init()
 	_input = _player.components.get_component(InputComponent)
 	_camera = _player.components.get_component(PlayerCameraRotation)
-	
-	create_bind(_input.run_pressed, _on_input_run_pressed)
-	create_bind(_input.run_released, _on_input_run_released)
-	create_bind(Constraints.changed, _on_constraints_changed)
 
 
 func physics_tick(delta: float) -> void:
 	var input := _input.get_movement_direction()
 	
-	# Get camera facing directions
-	var forward := _camera.get_forward_vector().normalized()
-	var right := _camera.get_right_vector().normalized()
-	
-	# No vertical movement
+	var forward := _camera.get_forward_vector()
+	var right := _camera.get_right_vector()
 	forward.y = 0.0
 	right.y = 0.0
 	
-	# Combine movement input with camera directions
-	var direction := (right * input.x + forward * input.z).normalized()
+	var direction := (right.normalized() * input.x + forward.normalized() * input.z).normalized()
 	
-	# Apply
+	# Decide state first so speed is correct this frame
+	var desired := _get_desired_state(direction != Vector3.ZERO)
+	if desired != _player.movement_state.get_state():
+		_player.movement_state.request(desired)
+	
 	var lerp_delta := Shortcuts.get_lerp_delta(_player.stats.move_acceleration, delta)
 	_player.velocity.x = lerpf(_player.velocity.x, direction.x * _get_speed(), lerp_delta)
 	_player.velocity.z = lerpf(_player.velocity.z, direction.z * _get_speed(), lerp_delta)
 	
-	var moving := direction != Vector3.ZERO
-	if moving and _player.movement_state.get_state() == MovementState.STILL:
-		_on_begin_moving()
-	elif not moving:
-		_change_state(MovementState.STILL)
-	
-	if moving and _can_run() and _player.movement_state.get_state() != MovementState.RUNNING:
-		_change_state(MovementState.RUNNING)
-	elif moving and not _can_run() and _player.movement_state.get_state() == MovementState.RUNNING:
-		_change_state(MovementState.WALKING)
+	_error_checks()
+
+
+func _get_desired_state(moving: bool) -> MovementState:
+	if not moving:
+		return MovementState.STILL
+	if _can_run():
+		return MovementState.RUNNING
+	return MovementState.WALKING
 
 
 func deactivate() -> void:
@@ -75,34 +70,6 @@ func _can_run() -> bool:
 	return true
 
 
-func _change_state(new: MovementState):
-	if new == MovementState.RUNNING and not _can_run():
-		return false
-	
-	_player.movement_state.request(new)
-
-
-func _on_begin_moving() -> void:
-	if _input.is_running():
-		_change_state(MovementState.RUNNING)
-	else:
-		_change_state(MovementState.WALKING)
-
-
-#region Signal Connections
-func _on_input_run_pressed() -> void:
-	if _input.get_movement_direction() != Vector3.ZERO and _player.velocity != Vector3.ZERO:
-		_change_state(MovementState.RUNNING)
-
-
-func _on_input_run_released() -> void:
-	if _player.velocity != Vector3.ZERO:
-		_change_state(MovementState.WALKING)
-	else:
-		_change_state(MovementState.STILL)
-
-
-func _on_constraints_changed() -> void:
-	if Constraints.has(Constraint.Type.RUN_LOCKED) and _player.movement_state.get_state() == MovementState.RUNNING:
-		_change_state(MovementState.WALKING)
-#endregion
+func _error_checks() -> void:
+	if _player.movement_state.get_state() == MovementState.RUNNING and not _input.is_running():
+		push_error("stuck running: moving = ", _input.get_movement_direction() != Vector3.ZERO, " can_run = ", _can_run())

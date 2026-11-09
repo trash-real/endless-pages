@@ -1,0 +1,9 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://q3jef3f7vebn"]
+
+[ext_resource type="Texture2D" uid="uid://ubbkca8a3ct0" path="res://assets/art/textures/grass1.aseprite" id="1_wb4m5"]
+
+[resource]
+albedo_color = Color(0.7539839, 0.75398386, 0.75398386, 1)
+albedo_texture = ExtResource("1_wb4m5")
+uv1_scale = Vector3(30, 30, 30)
+texture_filter = 0

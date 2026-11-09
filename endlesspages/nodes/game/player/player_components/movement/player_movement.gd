@@ -41,6 +41,11 @@ func physics_tick(delta: float) -> void:
 		_on_begin_moving()
 	elif not moving:
 		_change_state(MovementState.STILL)
+	
+	if moving and _can_run() and _player.movement_state.get_state() != MovementState.RUNNING:
+		_change_state(MovementState.RUNNING)
+	elif moving and not _can_run() and _player.movement_state.get_state() == MovementState.RUNNING:
+		_change_state(MovementState.WALKING)
 
 
 func deactivate() -> void:
@@ -57,9 +62,22 @@ func _get_speed() -> float:
 			return _player.stats.move_walk_speed
 
 
+func _can_run() -> bool:
+	# Not inputting run
+	if not _input.is_running():
+		return false
+	# Can only run while moving forward
+	if not _input.get_movement_direction().z > 0.0:
+		return false
+	# Run locked
+	if Constraints.has(Constraint.Type.RUN_LOCKED):
+		return false
+	return true
+
+
 func _change_state(new: MovementState):
-	if Constraints.has(Constraint.Type.RUN_LOCKED) and new == MovementState.RUNNING:
-		return
+	if new == MovementState.RUNNING and not _can_run():
+		return false
 	
 	_player.movement_state.request(new)
 

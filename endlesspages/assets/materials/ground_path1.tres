@@ -1,0 +1,10 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://ce5lf8iw2t0nw"]
+
+[ext_resource type="Texture2D" uid="uid://csj652qwux4yh" path="res://assets/art/textures/path1.aseprite" id="1_nuj43"]
+
+[resource]
+albedo_texture = ExtResource("1_nuj43")
+uv1_scale = Vector3(0.25, 0.25, 0.25)
+uv1_offset = Vector3(0.5, 0, 0)
+uv1_triplanar = true
+texture_filter = 0

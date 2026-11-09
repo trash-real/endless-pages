@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://c75lrvjg4mlu7" path="res://nodes/ui/page_collection_canvas/page_collection_canvas_layer.tscn" id="7_idani"]
 [ext_resource type="Shader" uid="uid://jtd7iubqexkm" path="res://assets/shaders/scanlines.gdshader" id="8_ks4bd"]
 [ext_resource type="Shader" uid="uid://bw3qhc25iqfbg" path="res://assets/shaders/screen_pixelation.gdshader" id="9_0vnc0"]
+[ext_resource type="AudioStream" uid="uid://ua8y1wt5pgjw" path="res://assets/sound/music/menu_loop.ogg" id="10_0vnc0"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_61opr"]
 shader = ExtResource("4_weaco")
@@ -90,6 +91,7 @@ mouse_filter = 2
 
 [node name="ScreenScanlinesCanvasLayer" type="CanvasLayer" parent="PostProcess" unique_id=826504326]
 layer = 21
+visible = false
 
 [node name="ColorRect" type="ColorRect" parent="PostProcess/ScreenScanlinesCanvasLayer" unique_id=1816044698]
 material = SubResource("ShaderMaterial_w7epw")
@@ -99,3 +101,9 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1797442910]
+stream = ExtResource("10_0vnc0")
+volume_db = -6.0
+pitch_scale = 0.4
+bus = &"GameMusic"

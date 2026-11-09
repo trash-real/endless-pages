@@ -12,6 +12,8 @@ extends Resource
 @export var move_run_speed: float = 5.0
 ## How quickly the player gets to their desired speed. Higher = faster.
 @export var move_acceleration: float = 10.0
+## Whether or not the player can run while not moving forward.
+@export var move_omni_run: bool = false
 
 @export_group("Flashlight", "light_")
 ## Determines SpotLight3D's range value.[br]

@@ -30,17 +30,17 @@ func init() -> void:
 
 ## Turn on.
 func activate() -> void:
-	_light.visible = true
+	_tween_range(_player.stats.amblight_range, _ts_activate)
 
 
 ## Turn off.
 func deactivate() -> void:
-	_light.visible = false
+	_tween_range(0.0, _ts_deactivate)
 
 
 ## Applies light related stats from PlayerStats resource.
 func _apply_stats() -> void:
-	_range = _player.stats.amblight_range
+	_range = 0.0 # Starts off
 	_energy = _player.stats.amblight_power
 
 
@@ -53,5 +53,5 @@ func _check_if_initially_active() -> void:
 
 func _tween_range(value: float, settings: TweenSettings) -> void:
 	_range_tween = Shortcuts.recreate_tween(_range_tween, self)
-	_range_tween.tween_property(_light, "omni_range", value, settings.time)
-	Shortcuts.apply_tween_settings(_range_tween, settings)
+	_range_tween.tween_property(_light, "omni_range", value, settings.time)\
+		.set_ease(settings.ease).set_trans(settings.trans)

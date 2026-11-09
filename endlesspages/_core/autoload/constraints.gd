@@ -54,3 +54,15 @@ func clear() -> void:
 		return
 	_holders.clear()
 	changed.emit()
+
+
+#region Helpers
+func run_locked() -> bool:
+	if has(Constraint.Type.RUN_LOCKED):
+		return true
+	if has(Constraint.Type.MOVEMENT_LOCKED):
+		return true
+	if has(Constraint.Type.INPUT_CAPTURED):
+		return true
+	return false
+#endregion

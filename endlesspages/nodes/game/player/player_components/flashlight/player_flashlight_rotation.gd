@@ -10,6 +10,7 @@ extends PlayerComponent
 @export var _stop_run_settings: TweenSettings
 @export var _start_attract_settings: TweenSettings
 @export var _stop_attract_settings: TweenSettings
+@export var _light_on_settings: TweenSettings
 
 @export_group("References")
 @export var _flashlight_base: Node3D
@@ -39,6 +40,7 @@ func init() -> void:
 	_attract = _host.get_component(PlayerFlashlightAttract)
 	
 	create_bind(_player.movement_state.changed, _on_player_movement_state_changed)
+	create_bind(_player.light_state.changed, _on_player_light_state_changed)
 	create_bind(_attract.interact_attractor_updated, _on_attract_interact_attractor_updated)
 
 
@@ -130,6 +132,12 @@ func _on_player_movement_state_changed(from: int, to: int) -> void:
 		_tween_run_weight(0.0, _stop_run_settings)
 	elif to == PlayerMovement.MovementState.RUNNING:
 		_tween_run_weight(1.0, _start_run_settings)
+
+
+func _on_player_light_state_changed(_from: int, to: int) -> void:
+	if to == PlayerFlashlightController.LightState.ON and not _input.is_running():
+		_run_weight = 1.0
+		_tween_run_weight(0.0, _light_on_settings)
 
 
 func _on_attract_interact_attractor_updated(new: Node3D) -> void:

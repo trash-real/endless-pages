@@ -66,14 +66,19 @@ time = 0.33
 trans = 10
 metadata/_custom_type_script = "uid://dqiid0ps7nvv6"
 
+[sub_resource type="Resource" id="Resource_yn3qu"]
+script = ExtResource("11_yrsia")
+time = 0.7
+metadata/_custom_type_script = "uid://dqiid0ps7nvv6"
+
 [sub_resource type="Resource" id="Resource_lndgy"]
 script = ExtResource("11_yrsia")
-time = 0.4
+time = 1.0
 metadata/_custom_type_script = "uid://dqiid0ps7nvv6"
 
 [sub_resource type="Resource" id="Resource_w350l"]
 script = ExtResource("11_yrsia")
-time = 0.2
+time = 0.0
 metadata/_custom_type_script = "uid://dqiid0ps7nvv6"
 
 [node name="Player" type="CharacterBody3D" unique_id=57277150]
@@ -127,6 +132,7 @@ metadata/_custom_type_script = "uid://bxoqh76g702ti"
 
 [node name="PlayerCameraTilt" type="Node" parent="CameraBase" unique_id=2141604790 node_paths=PackedStringArray("_target")]
 script = ExtResource("7_6upwa")
+_base_tilt = 0.5
 _target = NodePath("../CameraYaw/CameraPitch/CameraBobber/CameraTilt")
 metadata/_custom_type_script = "uid://cuhus4cxqm1ld"
 
@@ -171,6 +177,7 @@ _start_run_settings = SubResource("Resource_ts7x6")
 _stop_run_settings = SubResource("Resource_ks4bd")
 _start_attract_settings = SubResource("Resource_idani")
 _stop_attract_settings = SubResource("Resource_56pq6")
+_light_on_settings = SubResource("Resource_yn3qu")
 _flashlight_base = NodePath("..")
 _offset_node = NodePath("../RunOffset")
 _attract_node = NodePath("../RunOffset/Attraction")

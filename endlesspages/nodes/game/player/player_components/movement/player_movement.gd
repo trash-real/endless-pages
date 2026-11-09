@@ -61,11 +61,12 @@ func _can_run() -> bool:
 	# Not inputting run
 	if not _input.is_running():
 		return false
-	# Can only run while moving forward
-	if not _input.get_movement_direction().z > 0.0:
-		return false
-	# Run locked
-	if Constraints.has(Constraint.Type.RUN_LOCKED):
+	# Can only run while moving forward if omni running disabled
+	if not _player.stats.move_omni_run:
+		if not _input.get_movement_direction().z > 0.0:
+			return false
+	# Run locked by constraints
+	if Constraints.run_locked():
 		return false
 	return true
 

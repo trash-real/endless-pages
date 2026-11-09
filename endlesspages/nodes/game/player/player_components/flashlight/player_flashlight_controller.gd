@@ -21,6 +21,10 @@ func init() -> void:
 	create_bind(_input.light_released, _on_input_light_released)
 
 
+func is_on() -> bool:
+	return _player.light_state.get_state() == LightState.ON
+
+
 ## Player has pressed the flashlight's on/off button.
 func _light_pressed() -> void:
 	pass

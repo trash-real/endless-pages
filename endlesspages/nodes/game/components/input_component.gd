@@ -15,6 +15,8 @@ var _triggers: Dictionary[String, Array] = {
 	"player_interact": [interact_pressed, interact_released],
 }
 
+var _is_run_held: bool = false
+
 
 #region Input
 func _unhandled_input(event: InputEvent) -> void:
@@ -27,10 +29,13 @@ func _unhandled_input(event: InputEvent) -> void:
 	if not enabled:
 		return
 	
+	# Workaround for engine bug where shift can get stuck pressed
+	if event.is_action("player_run") and not event.is_echo():
+		_is_run_held = event.is_pressed()
+	
 	if event is InputEventMouseMotion:
 		if Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
 			mouse_motion.emit(event.relative)
-		return
 	
 	for action: StringName in _triggers:
 		if event.is_action_pressed(action):
@@ -42,6 +47,8 @@ func _unhandled_input(event: InputEvent) -> void:
 func _handle_debug_input(event: InputEvent) -> void:
 	if event.is_action_pressed("debug_change_mouse_mode"):
 		_debug_change_mouse_mode()
+	if event.is_action_pressed("debug_print_movement_info"):
+		_debug_print_move_state()
 #endregion
 
 
@@ -59,7 +66,7 @@ func get_movement_direction() -> Vector3:
 
 
 func is_running() -> bool:
-	return enabled and Input.is_action_pressed("player_run")
+	return enabled and _is_run_held
 #endregion
 
 
@@ -70,4 +77,13 @@ func _debug_change_mouse_mode() -> void:
 			Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 		Input.MOUSE_MODE_VISIBLE:
 			Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+
+
+func _debug_print_move_state() -> void:
+	var s: String = "InputComponent Movement Info:"
+	if is_running():
+		s += "\nRunning."
+	else:
+		s += "\nNot running."
+	print(s)
 #endregion

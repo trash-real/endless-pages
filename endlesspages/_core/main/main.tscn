@@ -9,7 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://c75lrvjg4mlu7" path="res://nodes/ui/page_collection_canvas/page_collection_canvas_layer.tscn" id="7_idani"]
 [ext_resource type="Shader" uid="uid://jtd7iubqexkm" path="res://assets/shaders/scanlines.gdshader" id="8_ks4bd"]
 [ext_resource type="Shader" uid="uid://bw3qhc25iqfbg" path="res://assets/shaders/screen_pixelation.gdshader" id="9_0vnc0"]
-[ext_resource type="AudioStream" uid="uid://ua8y1wt5pgjw" path="res://assets/sound/music/menu_loop.ogg" id="10_0vnc0"]
+[ext_resource type="AudioStream" uid="uid://ua8y1wt5pgjw" path="res://assets/audio/music/menu_loop.ogg" id="10_0vnc0"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_61opr"]
 shader = ExtResource("4_weaco")
@@ -43,7 +43,7 @@ process_mode = 1
 [node name="Player" parent="Level/MapTest1" unique_id=777005718 instance=ExtResource("2_a8nhc")]
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=1598649772]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+transform = Transform3D(0.9999926, 0.0036463703, -0.0012157431, -0.003649308, 0.9999904, -0.0024231912, 0.0012068956, 0.0024276099, 0.9999963, 0, 1.5, 0)
 top_level = true
 
 [node name="PhantomCameraHost" type="Node" parent="Camera3D" unique_id=924364487]

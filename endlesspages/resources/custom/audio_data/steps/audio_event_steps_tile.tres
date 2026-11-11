@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="AudioEvent" format=3 uid="uid://bv5la0myt1nn3"]
+
+[ext_resource type="Script" uid="uid://dao4lv6yttocl" path="res://resources/custom/audio_data/audio_event.gd" id="1_7ofnc"]
+[ext_resource type="AudioStream" uid="uid://cdx78pym7mdsx" path="res://assets/audio/sfx/walking_tile1.wav" id="2_st8pe"]
+[ext_resource type="AudioStream" uid="uid://bbq3j84jhabfw" path="res://assets/audio/sfx/walking_tile2.wav" id="3_1v5b2"]
+[ext_resource type="AudioStream" uid="uid://6ypbcgagbcta" path="res://assets/audio/sfx/walking_tile3.wav" id="4_by5uq"]
+[ext_resource type="AudioStream" uid="uid://cvk3tacwjf15a" path="res://assets/audio/sfx/walking_tile4.wav" id="5_4vv3k"]
+[ext_resource type="AudioStream" uid="uid://dmfrubh3ixnhb" path="res://assets/audio/sfx/walking_tile5.wav" id="6_0mpq5"]
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_g3ni4"]
+streams_count = 5
+stream_0/stream = ExtResource("2_st8pe")
+stream_1/stream = ExtResource("3_1v5b2")
+stream_2/stream = ExtResource("4_by5uq")
+stream_3/stream = ExtResource("5_4vv3k")
+stream_4/stream = ExtResource("6_0mpq5")
+
+[resource]
+script = ExtResource("1_7ofnc")
+stream = SubResource("AudioStreamRandomizer_g3ni4")
+metadata/_custom_type_script = "uid://dao4lv6yttocl"

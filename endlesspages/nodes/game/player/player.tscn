@@ -124,7 +124,6 @@ metadata/_custom_type_script = "uid://5g6ow70c13o"
 [node name="PlayerCameraBob" type="Node" parent="CameraBase" unique_id=133536690 node_paths=PackedStringArray("_target")]
 script = ExtResource("7_yrsia")
 _x_amplitude = 0.02
-_y_amplitude = 0.08
 bob_intensity_multiplier = 1.6
 _base_step_rate = 1.6
 _target = NodePath("../CameraYaw/CameraPitch/CameraBobber")

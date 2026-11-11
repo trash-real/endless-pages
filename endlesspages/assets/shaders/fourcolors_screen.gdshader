@@ -15,10 +15,10 @@ void fragment() {
     float luma = dot(tex_color.rgb, vec3(0.299, 0.587, 0.114));
 
     vec4 result_color;
-    if (luma > 0.7) {
+    if (luma > 0.85) {
         result_color = shade_0;
     }
-    else if (luma > 0.4) {
+    else if (luma > 0.5) {
         result_color = shade_1;
     }
     else if (luma > 0.2) {

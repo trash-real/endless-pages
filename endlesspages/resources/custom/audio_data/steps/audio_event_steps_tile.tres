@@ -8,6 +8,7 @@
 [ext_resource type="AudioStream" uid="uid://dmfrubh3ixnhb" path="res://assets/audio/sfx/walking_tile5.wav" id="6_0mpq5"]
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_g3ni4"]
+random_pitch = 1.0594631
 streams_count = 5
 stream_0/stream = ExtResource("2_st8pe")
 stream_1/stream = ExtResource("3_1v5b2")
@@ -18,4 +19,5 @@ stream_4/stream = ExtResource("6_0mpq5")
 [resource]
 script = ExtResource("1_7ofnc")
 stream = SubResource("AudioStreamRandomizer_g3ni4")
+volume_db = -6.0
 metadata/_custom_type_script = "uid://dao4lv6yttocl"

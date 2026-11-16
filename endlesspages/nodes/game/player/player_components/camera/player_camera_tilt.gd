@@ -1,6 +1,8 @@
 class_name PlayerCameraTilt
 extends PlayerComponent
 ## Tilts camera in movement direction slightly.
+##
+## Juice effect.
 
 @export var _base_tilt: float = 0.4
 @export var _max_tilt: float = 4.0

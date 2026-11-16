@@ -222,6 +222,9 @@ interact_cast = NodePath("../CameraBase/CameraYaw/CameraPitch/InteractCast")
 active_move_states = Array[int]([0, 1])
 metadata/_custom_type_script = "uid://bnebmfopig042"
 
+[node name="FootstepSFXPlayer" type="AudioStreamPlayer3D" parent="." unique_id=1249210352]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 0)
+
 [node name="InteractCanvasLayer" parent="." unique_id=1660155778 node_paths=PackedStringArray("_interaction") instance=ExtResource("16_tkag7")]
 layer = 10
 _interaction = NodePath("../PlayerInteraction")

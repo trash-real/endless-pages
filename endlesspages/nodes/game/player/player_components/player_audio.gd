@@ -2,12 +2,22 @@ class_name PlayerAudio
 extends PlayerComponent
 ## Handles all player-related audio.
 
+@export var _step_event: AudioEvent
+@export var _step_player: AudioStreamPlayer3D
 
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass # Replace with function body.
+var _bob: PlayerCameraBob
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
+func init() -> void:
+	super()
+	
+	_bob = _host.get_component(PlayerCameraBob)
+	
+	create_bind(_bob.stepped, _on_stepped)
+
+
+func _on_stepped() -> void:
+	_step_player.stream = _step_event.stream
+	_step_player.bus = _step_event.bus
+	_step_player.volume_db = _step_event.volume_db
+	_step_player.play()

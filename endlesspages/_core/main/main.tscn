@@ -21,8 +21,10 @@ shader_parameter/shade_3 = Color(0.003921569, 0.11372549, 0.20784314, 1)
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_idani"]
 shader = ExtResource("9_0vnc0")
 shader_parameter/pixel_size = 2.0000000475
-shader_parameter/palette_steps = 0
-shader_parameter/dither = false
+shader_parameter/palette_steps = 16
+shader_parameter/dither = true
+shader_parameter/halftone_size = 2.0
+shader_parameter/halftone_angle = 45.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_w7epw"]
 shader = ExtResource("8_ks4bd")
@@ -43,7 +45,7 @@ process_mode = 1
 [node name="Player" parent="Level/MapTest1" unique_id=777005718 instance=ExtResource("2_a8nhc")]
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=1598649772]
-transform = Transform3D(0.9999926, 0.0036463703, -0.0012157431, -0.003649308, 0.9999904, -0.0024231912, 0.0012068956, 0.0024276099, 0.9999963, 0, 1.5, 0)
+transform = Transform3D(0.9999957, 0.0025698012, -0.0013906708, -0.002573778, 0.9999926, -0.0028653345, 0.001383297, 0.0028689015, 0.99999493, 0, 1.5, 0)
 top_level = true
 
 [node name="PhantomCameraHost" type="Node" parent="Camera3D" unique_id=924364487]

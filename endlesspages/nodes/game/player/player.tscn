@@ -20,6 +20,8 @@
 [ext_resource type="Script" uid="uid://dy1ivh0rwb500" path="res://nodes/game/player/player_components/flashlight/player_flashlight_spotlight.gd" id="16_bq84y"]
 [ext_resource type="PackedScene" uid="uid://cvc427ax3okvl" path="res://nodes/game/player/hud/interact_canvas_layer/interact_canvas_layer.tscn" id="16_tkag7"]
 [ext_resource type="Script" uid="uid://3xyp0oc332ac" path="res://nodes/game/player/player_components/flashlight/player_ambient_light.gd" id="17_m7uoa"]
+[ext_resource type="Script" uid="uid://b1tg8p0pyg1g2" path="res://nodes/game/player/player_components/player_audio.gd" id="20_w350l"]
+[ext_resource type="Resource" uid="uid://bv5la0myt1nn3" path="res://resources/custom/audio_data/steps/audio_event_steps_tile.tres" id="21_yn3qu"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_g4v7s"]
 
@@ -222,8 +224,16 @@ interact_cast = NodePath("../CameraBase/CameraYaw/CameraPitch/InteractCast")
 active_move_states = Array[int]([0, 1])
 metadata/_custom_type_script = "uid://bnebmfopig042"
 
+[node name="PlayerAudio" type="Node" parent="." unique_id=1395922756 node_paths=PackedStringArray("_step_player")]
+script = ExtResource("20_w350l")
+_step_event = ExtResource("21_yn3qu")
+_step_player = NodePath("../FootstepSFXPlayer")
+metadata/_custom_type_script = "uid://b1tg8p0pyg1g2"
+
 [node name="FootstepSFXPlayer" type="AudioStreamPlayer3D" parent="." unique_id=1249210352]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 0)
+max_polyphony = 2
+panning_strength = 0.25
 
 [node name="InteractCanvasLayer" parent="." unique_id=1660155778 node_paths=PackedStringArray("_interaction") instance=ExtResource("16_tkag7")]
 layer = 10
